@@ -1,6 +1,6 @@
 # Rise Together Web
 <p class="center">
-<img width="500" height="500" alt="riselogo" src="https://github.com/user-attachments/assets/7a65749a-7821-4594-bd87-f4de8da71426" />
+<img width="300" height="300" alt="riselogo" src="https://github.com/user-attachments/assets/7a65749a-7821-4594-bd87-f4de8da71426" />
 </p>
 Rise Together is a tech learning community where we grow through collaboration. With tracks in frontend, backend (Django), and AI/ML,  Learn, build, and rise—together. 🌱💻✨
 
@@ -24,7 +24,7 @@ Rise Together is a tech learning community where we grow through collaboration. 
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/logicbyroshan/my_portfolio.git  
+https://github.com/risetogethercommunity/rise-together-web.git
 cd [project]
 ```
 
@@ -61,3 +61,4 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+Visit http://127.0.0.1:8000/ in your browser.
