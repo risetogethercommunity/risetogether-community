@@ -31,18 +31,18 @@ cd [project]
 #### 2. Set Up Virtual Environment
 
 ```bash
-python -m venv venv
+python -m venv risenv
 ```
 
 #### 2. Activate the Virtual Environment
 - **Windows**
 ```bash
-venv\Scripts\activate
+risenv\Scripts\activate
 ```
 
 - **Mac/Linux**
 ```bash
-source venv/bin/activate
+source risenv/bin/activate
 ```
 
 #### 3. Install Dependencies
