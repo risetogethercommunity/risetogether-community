@@ -1,14 +1,13 @@
-# Rise Together Web
-<p class="center">
-<img width="300" height="300" alt="riselogo" src="https://github.com/user-attachments/assets/7a65749a-7821-4594-bd87-f4de8da71426" />
+<h1 align="center">Rise Together Web</h1>
+<p align="center">
+<img width="400" height="400" alt="riselogo" src="https://github.com/user-attachments/assets/7a65749a-7821-4594-bd87-f4de8da71426" />
 </p>
 Rise Together is a tech learning community where we grow through collaboration. With tracks in frontend, backend (Django), and AI/ML,  Learn, build, and rise—together. 🌱💻✨
 
+---
 ## Features
 
 ## Installation & Setup
-
----
 
 ### Prerequisites
 
@@ -17,7 +16,6 @@ Rise Together is a tech learning community where we grow through collaboration. 
 - Virtual Environment (venv)  
 - Django (installed via pip)  
 
----
 
 ### Steps to Run the Project
 
@@ -60,5 +58,5 @@ python manage.py migrate
 ```bash
 python manage.py runserver
 ```
-
+---
 Visit http://127.0.0.1:8000/ in your browser.
