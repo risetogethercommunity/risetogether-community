@@ -1,0 +1,231 @@
+/* ============================================= */
+/* DESIGN SYSTEM & GLOBAL STYLES                 */
+/* ============================================= */
+:root {
+    --accent-orange: #F97316;
+    --accent-orange-hover: #EA580C;
+    --background-darker: #111827; /* Deep navy for main background */
+    --surface-dark: #1F2937;    /* Lighter navy for sections */
+    --card-dark: #374151;       /* Grayish navy for cards */
+    --text-primary: #F3F4F6;     /* Off-white for main text */
+    --text-secondary: #9CA3AF;  /* Light gray for secondary text */
+    --border-color: #4B5563;     /* Mid-gray for borders */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-darker);
+    color: var(--text-primary);
+    line-height: 1.7;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+a { color: var(--accent-orange); text-decoration: none; }
+h1, h2, h3 { margin-bottom: 1rem; font-weight: 600; line-height: 1.3; }
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 2.75rem); }
+section { padding: 100px 0; }
+
+/* Centralized header for sections */
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem; /* Auto margins center it */
+}
+.section-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* ============================================= */
+/* BUTTONS & HEADER                              */
+/* ============================================= */
+.btn { display: inline-block; padding: 12px 28px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; }
+.btn-primary { background-color: var(--accent-orange); color: #fff; }
+.btn-primary:hover { background-color: var(--accent-orange-hover); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2); }
+.btn-outline { background-color: transparent; color: var(--text-primary); border: 2px solid var(--border-color); }
+.btn-outline:hover { background-color: var(--accent-orange); border-color: var(--accent-orange); color: #fff; }
+.btn-large { padding: 16px 36px; font-size: 1.1rem; }
+
+.main-header { padding: 1rem 0; position: sticky; top: 0; width: 100%; z-index: 1000; background-color: rgba(17, 24, 39, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); }
+.navbar { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { display: flex; align-items: center; gap: 0.75rem; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+.nav-menu { display: flex; list-style: none; gap: 2.5rem; }
+.nav-link { color: var(--text-secondary); font-weight: 500; transition: color 0.3s ease; position: relative; }
+.nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; transform: translateX(-50%); background-color: var(--accent-orange); transition: width 0.3s ease; }
+.nav-link:hover { color: var(--text-primary); }
+.nav-link:hover::after { width: 100%; }
+.nav-actions { display: flex; align-items: center; gap: 1rem; }
+.hamburger { display: none; cursor: pointer; }
+.bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-primary); transition: all 0.3s ease-in-out; }
+
+/* ============================================= */
+/* HERO SECTION                                  */
+/* ============================================= */
+.hero-section {
+    height: 90vh; /* Takes up 90% of the viewport height */
+    min-height: 650px; /* Ensures it's not too small on short screens */
+    padding: 0;
+    position: relative; /* Establishes a positioning context for its children */
+    overflow: hidden;   /* Prevents any child elements from spilling out */
+    
+    /* --- The Core of the Centering Logic --- */
+    /* Using CSS Grid is a modern and powerful way to perfectly center content. */
+    display: grid;
+    place-items: center; /* This single line centers the .hero-content both vertically and horizontally */
+}
+
+.hero-background-image {
+    /* This is the background image itself */
+    position: absolute; /* Positioned relative to the .hero-section */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Sits behind everything else */
+    
+    /* Ensures the image covers the entire area without distortion */
+    object-fit: cover; 
+    /* Explicitly centers the image's focal point */
+    object-position: center center; 
+}
+
+.hero-overlay {
+    /* This div creates the dark, centered overlay effect */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Sits on top of the image but behind the content */
+
+    /* --- New Centered Gradient --- */
+    /* A radial gradient creates a "spotlight" effect, drawing the eye to the center. */
+    background: radial-gradient(ellipse at center,
+        rgba(17, 24, 39, 0.6) 10%,  /* The center is more transparent */
+        rgba(17, 24, 39, 1) 100%   /* The edges are fully opaque */
+    );
+}
+.hero-content {
+    /* This is the container for the text and button */
+    position: relative; /* Ensures it sits above the overlay (default z-index is higher than -1) */
+    text-align: center; /* Aligns all text inside to the center */
+    padding: 0 24px; /* Adds some side padding on small screens */
+}
+.hero-content .highlight {
+    /* The orange accent color for a word in the H1 */
+    color: var(--accent-orange);
+}
+.hero-content h1 {
+    /* Styling for the main heading */
+    font-size: clamp(2.8rem, 6vw, 4.5rem); /* Responsive font size */
+    font-weight: 700;
+}
+.hero-content p {
+    /* Styling for the descriptive paragraph */
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin: 1.5rem auto 2.5rem; /* Top/bottom margin, and 'auto' on sides to center */
+    max-width: 650px; /* Prevents text from becoming too wide on large screens */
+    line-height: 1.8;
+}
+
+
+/* ============================================= */
+/* LIVE COMMUNITY FEED SECTION                   */
+/* ============================================= */
+.activity-section { background-color: var(--background-darker); padding: 100px 15px; }
+.activity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.activity-card { background: var(--surface-dark); border-radius: 12px; padding: 2rem; display: flex; gap: 1.5rem; align-items: flex-start; border: 1px solid var(--border-color); }
+.activity-icon { font-size: 1.5rem; color: var(--accent-orange); background-color: var(--card-dark); min-width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; }
+.activity-content h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+.activity-content p { color: var(--text-secondary); line-height: 1.6; }
+.activity-content p strong { color: var(--text-primary); }
+
+/* ============================================= */
+/* CARDS (BASE, PROJECT, BLOG)                   */
+/* ============================================= */
+.showcase-section, .blogs-section { background-color: var(--surface-dark); }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+.card { background-color: var(--card-dark); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid transparent; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+.card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); border-color: var(--accent-orange); }
+.card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+
+/* -- Unique Project Card Styles -- */
+.project-card .project-image { width: 100%; height: 220px; object-fit: cover; }
+.project-card .card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.author-avatar { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border-color); }
+.project-title { font-size: 1.3rem; margin: 0; }
+.card-author { color: var(--text-secondary); margin: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+.tag { background-color: var(--surface-dark); color: var(--text-secondary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 500; }
+.card-footer { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; gap: 1.5rem; color: var(--text-secondary); }
+.card-footer i { margin-right: 0.5rem; color: var(--accent-orange); }
+
+/* -- Unique Blog Card Styles -- */
+.blog-card { justify-content: space-between; }
+.card-category { color: var(--accent-orange); font-weight: 600; margin-bottom: 0.5rem; }
+.blog-title { font-size: 1.4rem; }
+.blog-excerpt { color: var(--text-secondary); margin: 1rem 0; flex-grow: 1; }
+.card-meta { color: var(--text-secondary); font-size: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color); }
+
+/* 'View All' Button Container */
+.section-cta { text-align: center; margin-top: 4rem; }
+
+/* ============================================= */
+/* FOOTER & RESPONSIVE DESIGN & ANIMATIONS        */
+/* ============================================= */
+.main-footer { background-color: var(--background-darker); padding: 60px 0 0; border-top: 1px solid var(--border-color); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+.footer-col h3, .footer-col h4 { color: var(--text-primary); margin-bottom: 1.5rem; font-weight: 600; }
+.footer-col p, .footer-col ul li a { color: var(--text-secondary); }
+.footer-col ul { list-style: none; } .footer-col ul li { margin-bottom: 0.75rem; }
+.footer-col ul li a:hover { color: var(--accent-orange); }
+.social-icons a { font-size: 1.5rem; margin-right: 1.5rem; transition: color 0.3s ease, transform 0.3s ease; display: inline-block; }
+.social-icons a:hover { color: var(--accent-orange); transform: scale(1.2); }
+.footer-bottom { text-align: center; padding: 24px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 0.9rem; }
+
+/* Animations */
+.fade-in { animation: fadeIn 1s ease-out forwards; opacity: 0; }
+.hero-content .fade-in:nth-child(1) { animation-delay: 0.2s; }
+.hero-content .fade-in:nth-child(2) { animation-delay: 0.4s; }
+.hero-content .fade-in:nth-child(3) { animation-delay: 0.6s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in-section { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.fade-in-section.visible { opacity: 1; transform: translateY(0); }
+
+/* Responsive Media Queries */
+@media (max-width: 992px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+    .nav-menu { position: fixed; left: -100%; top: 75px; flex-direction: column; background-color: var(--surface-dark); width: 100%; text-align: center; transition: 0.3s; box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05); gap: 0; }
+    .nav-menu.active { left: 0; }
+    .nav-item { padding: 1.5rem 0; border-bottom: 1px solid var(--border-color); width: 100%; }
+    .nav-link::after { display: none; }
+    .hamburger { display: block; }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .nav-actions .btn-outline { display: none; }
+    .hero-section { text-align: center; }
+    .hero-content { margin: 0 auto; }
+    .hero-overlay { background: linear-gradient(0deg, rgba(17, 24, 39, 0.95) 20%, rgba(17, 24, 39, 0.4) 100%); }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-content h1 {
+        /* Slightly smaller heading on mobile for better balance */
+        font-size: clamp(2.5rem, 8vw, 3rem);
+    }
+
+    .hero-content p {
+        /* Slightly smaller text on mobile */
+        font-size: 1.1rem;
+    }
+    .btn { padding: 6px 14px; border-radius: 5px; font-weight: 400; font-size: 14px; }
+    .nav-logo { gap: 0.75rem; font-size: 1rem; font-weight: 600; }
+    .nav-item { padding: 1rem 0; }
+
+}

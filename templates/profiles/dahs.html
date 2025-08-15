@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Rise Together</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard_style.css">
+    <script src="dashboard_script.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Left Sidebar -->
+        <aside class="left-sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <img src="logo.png" style="width: 40px; height: 40px; border-radius: 10px;" alt="Rise Together Logo">
+                    </div>
+                    <span class="logo-text">Rise Together</span>
+                </a>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas fa-home"></i>
+                            <span class="nav-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-rss"></i>
+                            <span class="nav-text">Feed</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-compass"></i>
+                            <span class="nav-text">Explore</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-code-branch"></i>
+                            <span class="nav-text">Projects</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-calendar"></i>
+                            <span class="nav-text">Events</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <span class="nav-text">Community</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-bookmark"></i>
+                            <span class="nav-text">Saved</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-cog"></i>
+                            <span class="nav-text">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Feed -->
+        <main class="main-feed">
+            <div class="feed-header">
+                <h1 class="feed-title">Community Feed</h1>
+                <p class="feed-subtitle">Stay connected with your tech community</p>
+            </div>
+
+            <div class="post-composer">
+                <form class="composer-form">
+                    <textarea class="composer-input" placeholder="What's on your mind? Share your thoughts, ask questions, or showcase your latest project..."></textarea>
+                </form>
+                <div class="composer-actions">
+                    <div class="composer-tools">
+                        <button class="tool-btn" title="Add Image">
+                            <i class="fas fa-image"></i>
+                        </button>
+                        <button class="tool-btn" title="Add Video">
+                            <i class="fas fa-video"></i>
+                        </button>
+                        <button class="tool-btn" title="Add Code">
+                            <i class="fas fa-code"></i>
+                        </button>
+                        <button class="tool-btn" title="Add Poll">
+                            <i class="fas fa-poll"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-primary">Post</button>
+                </div>
+            </div>
+
+            <div class="feed-posts">
+                <!-- Post 1 -->
+                <article class="post">
+                    <div class="post-header">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b3fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Sarah Johnson" class="post-avatar">
+                        <div class="post-meta">
+                            <h4>Sarah Johnson</h4>
+                            <div class="post-info">Posted in <strong>Web Development</strong> • 2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Just finished building a real-time chat application using WebSockets and Node.js! 🚀 The feeling when everything clicks and works perfectly is unmatched. Here's what I learned during the process:</p>
+                        <ul>
+                            <li>WebSocket connections can be tricky to manage at scale</li>
+                            <li>Implementing proper error handling is crucial</li>
+                            <li>Redis helped a lot with session management</li>
+                        </ul>
+                        <p>Would love to hear about your experiences with real-time applications. Any tips or best practices to share?</p>
+                    </div>
+                    <div class="post-media">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chat Application Screenshot" class="post-image">
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="toggleLike(this)">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">24</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="far fa-comment"></i>
+                            <span>12</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-share"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Post 2 -->
+                <article class="post">
+                    <div class="post-header">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Mike Chen" class="post-avatar">
+                        <div class="post-meta">
+                            <h4>Mike Chen</h4>
+                            <div class="post-info">Posted in <strong>AI & Machine Learning</strong> • 4 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Exciting news! Our team's machine learning model for predicting software bugs has achieved 87% accuracy! 📊 This could significantly improve code quality and reduce debugging time.</p>
+                        <p>We used a combination of static code analysis, version control history, and developer metrics. The model can identify potential bug-prone code sections before they make it to production.</p>
+                        <p>Looking for beta testers - DM me if you're interested in trying it out on your projects!</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="toggleLike(this)">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">56</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="far fa-comment"></i>
+                            <span>23</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-share"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Post 3 -->
+                <article class="post">
+                    <div class="post-header">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Emma Davis" class="post-avatar">
+                        <div class="post-meta">
+                            <h4>Emma Davis</h4>
+                            <div class="post-info">Posted in <strong>Career Development</strong> • 6 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Just completed my first week as a Senior Frontend Developer! 🎉 The imposter syndrome is real, but the team has been incredibly supportive.</p>
+                        <p>For anyone struggling with career transitions: remember that growth happens outside your comfort zone. Don't let fear hold you back from applying to roles that stretch your abilities.</p>
+                        <p>What's one piece of career advice that changed your perspective? Drop it below! 👇</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="toggleLike(this)">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">89</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="far fa-comment"></i>
+                            <span>34</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-share"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Post 4 with Video -->
+                <article class="post">
+                    <div class="post-header">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Alex Rodriguez" class="post-avatar">
+                        <div class="post-meta">
+                            <h4>Alex Rodriguez</h4>
+                            <div class="post-info">Posted in <strong>Tutorial</strong> • 8 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>New tutorial is live! 🎥 "Building Responsive Layouts with CSS Grid" - perfect for developers wanting to level up their CSS skills.</p>
+                        <p>In this 15-minute tutorial, we cover:</p>
+                        <ul>
+                            <li>Grid container and item properties</li>
+                            <li>Creating responsive layouts without media queries</li>
+                            <li>Common grid patterns and best practices</li>
+                        </ul>
+                        <p>Let me know what topics you'd like to see covered next!</p>
+                    </div>
+                    <div class="post-media">
+                        <video class="post-video" controls poster="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                            <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="toggleLike(this)">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">142</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="far fa-comment"></i>
+                            <span>28</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-share"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <!-- Profile Widget -->
+            <div class="sidebar-widget">
+                <div class="widget-header">
+                    <h3 class="widget-title">Your Profile</h3>
+                </div>
+                <div class="widget-content">
+                    <div class="profile-info">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Your Profile" class="profile-avatar">
+                        <h4 class="profile-name">Alex Johnson</h4>
+                        <p class="profile-role">Full Stack Developer</p>
+                        
+                        <div class="profile-stats">
+                            <div class="stat">
+                                <span class="stat-value">127</span>
+                                <span class="stat-label">Posts</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">2.4K</span>
+                                <span class="stat-label">Points</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">891</span>
+                                <span class="stat-label">Completions</span>
+                            </div>
+                        </div>
+                        
+                        <button class="profile-btn">Edit Profile</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard Widget -->
+            <div class="sidebar-widget">
+                <div class="widget-header">
+                    <h3 class="widget-title">Community Leaders</h3>
+                </div>
+                <div class="widget-content">
+                    <ul class="leaderboard-list">
+                        <li class="leaderboard-item">
+                            <span class="leaderboard-rank">1</span>
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b3fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Sarah Mitchell" class="leaderboard-avatar">
+                            <div class="leaderboard-info">
+                                <div class="leaderboard-name">Sarah Mitchell</div>
+                                <div class="leaderboard-points">2,847 points</div>
+                            </div>
+                        </li>
+                        <li class="leaderboard-item">
+                            <span class="leaderboard-rank">2</span>
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="David Chen" class="leaderboard-avatar">
+                            <div class="leaderboard-info">
+                                <div class="leaderboard-name">David Chen</div>
+                                <div class="leaderboard-points">2,156 points</div>
+                            </div>
+                        </li>
+                        <li class="leaderboard-item">
+                            <span class="leaderboard-rank">3</span>
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Emma Davis" class="leaderboard-avatar">
+                            <div class="leaderboard-info">
+                                <div class="leaderboard-name">Emma Davis</div>
+                                <div class="leaderboard-points">1,934 points</div>
+                            </div>
+                        </li>
+                        <li class="leaderboard-item">
+                            <span class="leaderboard-rank">4</span>
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="You" class="leaderboard-avatar">
+                            <div class="leaderboard-info">
+                                <div class="leaderboard-name">You</div>
+                                <div class="leaderboard-points">1,523 points</div>
+                            </div>
+                        </li>
+                        <li class="leaderboard-item">
+                            <span class="leaderboard-rank">5</span>
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Mark Thompson" class="leaderboard-avatar">
+                            <div class="leaderboard-info">
+                                <div class="leaderboard-name">Mark Thompson</div>
+                                <div class="leaderboard-points">1,387 points</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <ul class="mobile-nav-list">
+            <li>
+                <a href="#" class="mobile-nav-link active">
+                    <i class="mobile-nav-icon fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="mobile-nav-link">
+                    <i class="mobile-nav-icon fas fa-search"></i>
+                    <span>Explore</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="mobile-nav-link">
+                    <i class="mobile-nav-icon fas fa-plus"></i>
+                    <span>Post</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="mobile-nav-link">
+                    <i class="mobile-nav-icon fas fa-bell"></i>
+                    <span>Alerts</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="mobile-nav-link">
+                    <i class="mobile-nav-icon fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>

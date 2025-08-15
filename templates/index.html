@@ -1,0 +1,255 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rise Together - A Modern Tech Community</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Google Fonts: Poppins for a modern, rounded feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for crisp icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- ============================================= -->
+    <!-- HEADER & NAVIGATION                           -->
+    <!-- ============================================= -->
+    <header class="main-header">
+        <nav class="navbar container">
+            <a href="#" class="nav-logo">
+                <img src="logo.png" alt="Rise Together Logo" class="nav-logo-image" style="width: 40px; height: 40px; border-radius: 10px;">
+                <span>Rise Together</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Events</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-outline">Log In</button>
+                <button class="btn btn-primary">Join for Free</button>
+            </div>
+            <!-- Mobile Menu Hamburger -->
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ============================================= -->
+        <!-- HERO SECTION                                  -->
+        <!-- ============================================= -->
+        <section class="hero-section">
+            <!-- The hero background image is an <img> tag for easy Django/backend integration -->
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=2400" alt="Diverse group of people collaborating on laptops" class="hero-background-image">
+            <div class="hero-overlay"></div>
+            <div class="hero-content container">
+                <h1 class="fade-in">Build. Learn. Succeed. <span class="highlight">Together.</span></h1>
+                <p class="fade-in">Join a global network of developers, designers, and tech enthusiasts. Share your projects, get feedback, and accelerate your career.</p>
+                <div class="fade-in">
+                    <button class="btn btn-primary btn-large">Start Your Journey</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================= -->
+        <!-- LIVE COMMUNITY FEED SECTION (Previously Activity) -->
+        <!-- ============================================= -->
+        <section class="activity-section container fade-in-section">
+            <div class="section-header">
+                <h2>Live Community Feed</h2>
+                <p>See what the community is talking about right now.</p>
+            </div>
+            <div class="activity-grid">
+                <!-- Activity Card 1 -->
+                <div class="activity-card">
+                    <div class="activity-icon"><i class="fas fa-question-circle"></i></div>
+                    <div class="activity-content">
+                        <h3>New Question</h3>
+                        <p><strong>Maria G.</strong> asked in <strong>#cybersecurity</strong>: "Best resources for Pen Testing beginners?"</p>
+                    </div>
+                </div>
+                <!-- Activity Card 2 -->
+                <div class="activity-card">
+                    <div class="activity-icon"><i class="fas fa-project-diagram"></i></div>
+                    <div class="activity-content">
+                        <h3>Project Showcase</h3>
+                        <p><strong>Kenji T.</strong> shared a project: <strong>"AI-Powered News Summarizer"</strong>.</p>
+                    </div>
+                </div>
+                <!-- Activity Card 3 -->
+                <div class="activity-card">
+                    <div class="activity-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="activity-content">
+                        <h3>New Event</h3>
+                        <p>An AMA with a Senior DevOps Engineer has been scheduled for next Friday.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ============================================= -->
+        <!-- PROJECT SHOWCASE SECTION                      -->
+        <!-- ============================================= -->
+        <section class="showcase-section fade-in-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Community Showcase</h2>
+                    <p>Check out the latest amazing projects built by our members.</p>
+                </div>
+                <div class="card-grid">
+                    <!-- Project Card 1 -->
+                    <div class="card project-card">
+                        <img class="project-image" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800" alt="Data Dashboard Project">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <img src="https://i.pravatar.cc/40?img=1" alt="Author Avatar" class="author-avatar">
+                                <div>
+                                    <h3 class="project-title">Sales Data Dashboard</h3>
+                                    <p class="card-author">by Aisha Bello</p>
+                                </div>
+                            </div>
+                            <div class="tags"><span class="tag">Python</span><span class="tag">Dash</span><span class="tag">Data Viz</span></div>
+                            <div class="card-footer">
+                                <span><i class="fas fa-heart"></i> 128</span>
+                                <span><i class="fas fa-comment"></i> 32</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="card project-card">
+                        <img class="project-image" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800" alt="Portfolio Website Project">
+                        <div class="card-content">
+                             <div class="card-header">
+                                <img src="https://i.pravatar.cc/40?img=3" alt="Author Avatar" class="author-avatar">
+                                <div>
+                                    <h3 class="project-title">Developer Portfolio</h3>
+                                    <p class="card-author">by Carlos Ruiz</p>
+                                </div>
+                            </div>
+                            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+                             <div class="card-footer">
+                                <span><i class="fas fa-heart"></i> 95</span>
+                                <span><i class="fas fa-comment"></i> 18</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 -->
+                    <div class="card project-card">
+                         <img class="project-image" src="https://images.unsplash.com/photo-1526374965328-5f61d4dc18c5?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800" alt="Python Script Project">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <img src="https://i.pravatar.cc/40?img=5" alt="Author Avatar" class="author-avatar">
+                                <div>
+                                    <h3 class="project-title">Web Scraper Bot</h3>
+                                    <p class="card-author">by Priya Sharma</p>
+                                </div>
+                            </div>
+                            <div class="tags"><span class="tag">Python</span><span class="tag">Automation</span></div>
+                            <div class="card-footer">
+                                <span><i class="fas fa-heart"></i> 210</span>
+                                <span><i class="fas fa-comment"></i> 45</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Section Call to Action Button -->
+                <div class="section-cta">
+                    <button class="btn btn-outline">View All Projects</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ============================================= -->
+        <!-- BLOGS SECTION                                 -->
+        <!-- ============================================= -->
+        <section class="blogs-section fade-in-section">
+             <div class="container">
+                <div class="section-header">
+                    <h2>Insights From The Blog</h2>
+                    <p>Learn from tutorials, career advice, and stories from our community.</p>
+                </div>
+                <div class="card-grid">
+                    <!-- Blog Card 1 -->
+                    <div class="card blog-card">
+                        <div class="card-content">
+                            <span class="card-category">Career Development</span>
+                            <h3 class="blog-title">The Art of the Technical Interview</h3>
+                            <p class="blog-excerpt">Go beyond the code. We break down the soft skills that will make you stand out in your next tech interview.</p>
+                            <div class="card-meta">
+                                <span>By Alex Johnson</span>
+                                <span>•</span>
+                                <span>Oct 26, 2023</span>
+                                <span>•</span>
+                                <span>6 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Blog Card 2 -->
+                    <div class="card blog-card">
+                        <div class="card-content">
+                            <span class="card-category">Web Development</span>
+                            <h3 class="blog-title">Why You Should Learn a CSS Framework</h3>
+                            <p class="blog-excerpt">From Tailwind to Bootstrap, explore how frameworks can supercharge your development workflow.</p>
+                            <div class="card-meta">
+                                <span>By Samantha Lee</span>
+                                <span>•</span>
+                                <span>Oct 22, 2023</span>
+                                <span>•</span>
+                                <span>8 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Blog Card 3 -->
+                    <div class="card blog-card">
+                        <div class="card-content">
+                            <span class="card-category">AI & ML</span>
+                            <h3 class="blog-title">Your First Machine Learning Model</h3>
+                            <p class="blog-excerpt">A step-by-step guide for beginners to train and deploy a simple model using Scikit-learn.</p>
+                            <div class="card-meta">
+                                <span>By Ben Carter</span>
+                                <span>•</span>
+                                <span>Oct 19, 2023</span>
+                                <span>•</span>
+                                <span>12 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Section Call to Action Button -->
+                <div class="section-cta">
+                    <button class="btn btn-outline">Read All Articles</button>
+                </div>
+             </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================= -->
+    <!-- FOOTER                                        -->
+    <!-- ============================================= -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Rise Together</h3>
+                <p>A global community for learning, building, and growing in tech.</p>
+            </div>
+            <div class="footer-col"><h4>Explore</h4><ul><li><a href="#">Projects</a></li><li><a href="#">Events</a></li><li><a href="#">Blog</a></li></ul></div>
+            <div class="footer-col"><h4>About</h4><ul><li><a href="#">Our Mission</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Code of Conduct</a></li></ul></div>
+            <div class="footer-col"><h4>Follow Us</h4><div class="social-icons"><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></div></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2023 Rise Together Community. All rights reserved.</p></div>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

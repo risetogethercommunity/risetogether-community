@@ -1,0 +1,162 @@
+/* --- GLOBAL STYLES & VARIABLES --- */
+:root {
+    --accent-orange: #F97316;
+    --accent-orange-hover: #EA580C;
+    --background-darker: #111827;
+    --surface-dark: #1F2937;
+    --card-dark: #374151;
+    --text-primary: #F3F4F6;
+    --text-secondary: #9CA3AF;
+    --border-color: #4B5563;
+    --success-green: #10B981;
+    --error-red: #EF4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background-darker);
+    color: var(--text-primary);
+    
+    /* Center the container perfectly on the page */
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 20px; /* Provides space on very small screens */
+}
+
+/* --- MAIN AUTHENTICATION CONTAINER --- */
+.auth-container {
+    width: 100%;
+    max-width: 450px; /* Prevents the form from being too wide on desktops */
+    background: var(--surface-dark);
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    width: 80px; /* Adjust size as needed */
+    height: auto;
+}
+
+form h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+/* --- FORM ELEMENTS --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: var(--card-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-orange);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+}
+
+/* --- BUTTONS --- */
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--accent-orange);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--accent-orange-hover);
+    transform: translateY(-2px);
+}
+
+/* --- FORM SWITCHER --- */
+.auth-switcher {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--text-secondary);
+}
+
+.switch-btn {
+    background: none;
+    border: none;
+    color: var(--accent-orange);
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    padding: 0 4px; /* Makes it easier to click */
+}
+
+.switch-btn:hover {
+    text-decoration: underline;
+}
+
+/* --- DJANGO MESSAGES --- */
+.messages {
+    margin-bottom: 1.5rem;
+}
+
+.message {
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.message.success {
+    background-color: rgba(16, 185, 129, 0.1);
+    border-color: var(--success-green);
+    color: var(--success-green);
+}
+
+.message.error {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-color: var(--error-red);
+    color: var(--error-red);
+}
+
+/* --- UTILITY CLASS --- */
+.hidden {
+    display: none;
+}
