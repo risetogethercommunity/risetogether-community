@@ -29,7 +29,7 @@
         {% endif %}
         
         <!-- Login Form (Visible by default) -->
-        <form id="login-form" method="POST" action="{% url 'your_login_url_name' %}">
+        <form id="login-form" method="POST" action="{% url 'login' %}">
             {% csrf_token %} <!-- Django CSRF Protection -->
             <h2>Welcome Back!</h2>
             <div class="form-group">
@@ -44,7 +44,8 @@
         </form>
 
         <!-- Signup Form (Hidden by default) -->
-        <form id="signup-form" method="POST" action="{% url 'your_signup_url_name' %}" class="hidden">
+         {% comment %}
+         <form id="signup-form" method="POST" action="{% url 'your_signup_url_name' %}" class="hidden">
             {% csrf_token %} <!-- Django CSRF Protection -->
             <h2>Join the Community</h2>
             <div class="form-group">
@@ -65,6 +66,8 @@
             </div>
             <button type="submit" class="btn btn-primary">Create Account</button>
         </form>
+        {% endcomment %}
+
 
         <!-- Form Switcher -->
         <div class="auth-switcher">
