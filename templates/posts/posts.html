@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Posts Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/posts/posts.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Post Creation Form -->
+        <div class="form-card">
+            <h2>Create a Post</h2>
+            <form method="post" enctype="multipart/form-data" class="post-form">
+                {% csrf_token %}
+
+                <!-- Content -->
+                <label for="id_content">Content:</label>
+                {{ form.content }}
+
+                <!-- Attachment Type -->
+                <label for="id_attachment_type">Attachment Type:</label>
+                {{ form.attachment_type }}
+
+                <!-- Fields for image/video/code -->
+                <div id="imageField" class="hidden">
+                    <label for="id_image">Upload Image:</label>
+                    {{ form.image }}
+                </div>
+
+                <div id="videoField" class="hidden">
+                    <label for="id_video">Upload Video:</label>
+                    {{ form.video }}
+                </div>
+
+                <div id="codeField" class="hidden">
+                    <label for="id_code">Enter Code:</label>
+                    {{ form.code }}
+                </div>
+
+                <button type="submit" class="btn">Post</button>
+            </form>
+        </div>
+
+        <!-- Posts Feed -->
+        <div class="posts-section">
+            <h2>All Posts</h2>
+            {% for post in posts %}
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="avatar">{{ post.user.username|slice:":1"|upper }}</div>
+                        <div>
+                            <p class="username">{{ post.user.username }}</p>
+                            <p class="user-field">{{ post.user.field }}</p>
+                        </div>
+                    </div>
+
+                    <div class="post-content">
+                        <p>{{ post.content }}</p>
+                        {% if post.attachment_type == "image" %}
+                            <img src="{{ post.image.url }}" class="post-media">
+                        {% elif post.attachment_type == "video" %}
+                            <video controls class="post-media">
+                                <source src="{{ post.video.url }}" type="video/mp4">
+                            </video>
+                        {% elif post.attachment_type == "code" %}
+                            <pre><code>{{ post.code }}</code></pre>
+                        {% endif %}
+                    </div>
+
+                    <div class="post-footer">
+                        <small>Posted on {{ post.created_at }}</small>
+                        <div class="post-actions">
+                            <a href="{% url 'post_edit' post.id %}" class="btn">✏️ Edit</a>
+                            <a href="{% url 'post_delete' post.id %}" class="btn btn-delete">🗑️ Delete</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No posts yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="{% static 'js/posts/posts.js' %}"></script>
+</body>
+</html>

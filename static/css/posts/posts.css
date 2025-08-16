@@ -1,0 +1,171 @@
+/* General Layout */
+body {
+    font-family: Arial, sans-serif;
+    background: #121212; /* dark background */
+    color: #e4e6eb; /* light text */
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Form Styling */
+.form-card {
+    background: #1e1e1e; /* dark card background */
+    padding: 40px;
+    padding-left: 20px;;
+    border-radius: 12px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.6);
+    margin-bottom: 30px;
+}
+
+.form-card h2 {
+    margin-bottom: 15px;
+    color: #f1f1f1;
+}
+
+.post-form label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #ddd;
+}
+
+.post-form input,
+.post-form textarea,
+.post-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: #2a2a2a;
+    color: #f1f1f1;
+}
+
+.post-form input:focus,
+.post-form textarea:focus,
+.post-form select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Buttons */
+.btn {
+    background: #ff7f50;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn:hover {
+    background: #ff7f50;
+}
+
+/* Posts Section */
+.posts-section h2 {
+    margin-bottom: 15px;
+    color: #f1f1f1;
+}
+
+/* Post Card */
+.post-card {
+    background: #1e1e1e;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.6);
+    margin-bottom: 20px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.avatar {
+    background: #ff7f50;
+    color: white;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+.username {
+    font-weight: bold;
+    margin: 0;
+    color: #e4e6eb;
+}
+
+.user-field {
+    font-size: 14px;
+    color: #aaa;
+    margin: 0;
+}
+
+.post-content p {
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.post-media {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.post-footer {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #999;
+}
+
+/* Hidden Fields */
+.hidden {
+    display: none;
+}
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.post-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    padding: 5px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    color: white;
+    background: #ff7b54; /* orange theme */
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #ff5722;
+}
+
+.btn-delete {
+    background: #dc3545; /* red for delete */
+}
+
+.btn-delete:hover {
+    background: #b52a37;
+}
