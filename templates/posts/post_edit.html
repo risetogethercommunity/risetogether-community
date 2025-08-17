@@ -1,0 +1,20 @@
+{% load static %}
+<html>
+    <head>
+        <title>Edit Post</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/posts/posts.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="form-card">
+                <h2>Edit Post</h2>
+                <form method="post" enctype="multipart/form-data" class="post-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn">Save Changes</button>
+                    <a href="{% url 'post_list' %}" class="btn cancel-btn">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

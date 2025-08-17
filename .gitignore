@@ -201,3 +201,19 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+env/
+risenv/
+
+# Media uploads
+media/
+
+# Django migrations cache (only keep your migration files if needed)
+*.sqlite3
