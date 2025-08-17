@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Signup - Rise Together</title>
-    <link rel="stylesheet" href="auth_style.css">
+    <link rel="stylesheet" href="{% static 'css/accounts/auth_style.css' %}">
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +16,7 @@
     <div class="auth-container">
         <!-- Logo Section -->
         <div class="auth-header">
-            <img src="logo.png" alt="Rise Together Logo" class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="Rise Together Logo" class="logo">
         </div>
 
         <!-- Django Messages Framework Placeholder -->
@@ -29,7 +30,7 @@
         {% endif %}
         
         <!-- Login Form (Visible by default) -->
-        <form id="login-form" method="POST" action="{% url 'your_login_url_name' %}">
+        <form id="login-form" method="POST" action="{% url 'login' %}">
             {% csrf_token %} <!-- Django CSRF Protection -->
             <h2>Welcome Back!</h2>
             <div class="form-group">
@@ -44,7 +45,8 @@
         </form>
 
         <!-- Signup Form (Hidden by default) -->
-        <form id="signup-form" method="POST" action="{% url 'your_signup_url_name' %}" class="hidden">
+
+         <form id="signup-form" method="POST" action="{% url 'signup' %}" class="hidden">
             {% csrf_token %} <!-- Django CSRF Protection -->
             <h2>Join the Community</h2>
             <div class="form-group">
@@ -61,10 +63,12 @@
             </div>
              <div class="form-group">
                 <label for="signup-password2">Confirm Password</label>
-                <input type="password" id="signup-password2" name="password2" required>
+                <input type="password" id="signup-password2" name="confirm_password" required>
+
             </div>
             <button type="submit" class="btn btn-primary">Create Account</button>
         </form>
+
 
         <!-- Form Switcher -->
         <div class="auth-switcher">
@@ -79,6 +83,7 @@
         </div>
     </div>
 
-    <script src="auth_script.js"></script>
+   <script src="{% static 'js/accounts/auth_script.js' %}"></script>
+
 </body>
 </html>
