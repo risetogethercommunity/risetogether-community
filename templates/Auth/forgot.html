@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password - Rise Together</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .font-rajdhani {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .glow-orange {
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+        }
+        
+        .glow-orange-strong {
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
+        }
+        
+        .glassmorphism {
+            backdrop-filter: blur(10px);
+            background: rgba(17, 24, 39, 0.8);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #111827 100%);
+        }
+        
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaCUyMGNvbW11bml0eXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=1920&q=60');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(2px);
+            z-index: -2;
+        }
+        
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(17, 24, 39, 0.8) 50%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: -1;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(75, 85, 99, 0.2);
+            border: 1px solid rgba(75, 85, 99, 0.5);
+            color: #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(75, 85, 99, 0.3);
+            border-color: rgba(249, 115, 22, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(75, 85, 99, 0.2);
+        }
+        
+        .form-field {
+            transition: all 0.3s ease;
+        }
+        
+        .form-field:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(249, 115, 22, 0.2);
+        }
+        
+        .success-animation {
+            animation: successPulse 0.6s ease-in-out;
+        }
+        
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .glassmorphism {
+                margin: 1rem !important;
+                padding: 1.5rem !important;
+            }
+            
+            .text-3xl {
+                font-size: 1.5rem !important;
+                line-height: 2rem !important;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 0.875rem 1.5rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            .form-field {
+                padding: 0.875rem 1rem !important;
+                font-size: 0.875rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .glassmorphism {
+                margin: 0.5rem !important;
+                padding: 1rem !important;
+            }
+            
+            .form-field {
+                padding: 0.75rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 0.75rem 1.25rem !important;
+                font-size: 0.8rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Background Image -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+    
+    <!-- Main Container -->
+    <div class="flex min-h-screen items-center justify-center p-4">
+        <!-- Form Container -->
+        <div class="relative z-10 w-full max-w-xl">
+            <div class="glassmorphism rounded-2xl p-8 glow-orange-strong">
+                
+                <!-- Initial Form -->
+                <div id="resetForm">
+                    <div class="text-center mb-8">
+                        <div class="flex items-center justify-center mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center glow-orange">
+                                <i class="fas fa-key text-2xl text-white"></i>
+                            </div>
+                        </div>
+                        <h2 class="font-rajdhani text-3xl font-bold mb-2">Forgot Password?</h2>
+                        <p class="text-gray-300">No worries! Enter your email and we'll send you a reset link</p>
+                    </div>
+                    
+                    <form id="forgotPasswordForm" class="space-y-6">
+                        <!-- Email Field -->
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-gray-200">
+                                <i class="fas fa-envelope mr-2 text-orange-500"></i>Email Address
+                            </label>
+                            <input type="email" id="email" name="email" required
+                                   class="form-field w-full px-4 py-3 bg-gray-800/70 border border-gray-600 rounded-lg focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all text-white placeholder-gray-300" 
+                                   placeholder="Enter your email address">
+                        </div>
+                        
+                        <!-- Info Box -->
+                        <div class="info-box">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-blue-400 mr-3 mt-0.5"></i>
+                                <div class="text-sm text-gray-300">
+                                    <p class="mb-2"><strong>What happens next:</strong></p>
+                                    <ul class="space-y-1 text-xs">
+                                        <li>• We'll send a secure reset link to your email</li>
+                                        <li>• Click the link to create a new password</li>
+                                        <li>• The link expires in 1 hour for security</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Buttons -->
+                        <div class="space-y-4">
+                            <button type="submit" 
+                                    class="w-full btn-primary py-3 rounded-lg font-semibold glow-orange text-white">
+                                <i class="fas fa-paper-plane mr-2"></i>Send Reset Link
+                            </button>
+                            
+                            <button type="button" onclick="goBack()"
+                                    class="w-full btn-secondary py-3 rounded-lg font-semibold">
+                                <i class="fas fa-arrow-left mr-2"></i>Back to Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Success Message (Hidden by default) -->
+                <div id="successMessage" class="hidden text-center">
+                    <div class="success-animation">
+                        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-check text-2xl text-white"></i>
+                        </div>
+                        <h3 class="font-rajdhani text-2xl font-bold mb-4 text-green-400">Check Your Email!</h3>
+                        <p class="text-gray-200 mb-6 leading-relaxed">
+                            We've sent a password reset link to <strong id="emailSent"></strong>. 
+                            Please check your inbox and click the link to reset your password.
+                        </p>
+                        
+                        <!-- Email Tips -->
+                        <div class="info-box text-left mb-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-lightbulb text-yellow-400 mr-3 mt-0.5"></i>
+                                <div class="text-sm text-gray-300">
+                                    <p class="mb-2"><strong>Didn't receive the email?</strong></p>
+                                    <ul class="space-y-1 text-xs">
+                                        <li>• Check your spam/junk folder</li>
+                                        <li>• Make sure you entered the correct email</li>
+                                        <li>• Wait a few minutes, emails can be delayed</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <button onclick="resendEmail()" 
+                                    class="w-full btn-primary py-3 rounded-lg font-semibold glow-orange text-white">
+                                <i class="fas fa-redo mr-2"></i>Resend Email
+                            </button>
+                            
+                            <button onclick="goBack()"
+                                    class="w-full btn-secondary py-3 rounded-lg font-semibold">
+                                <i class="fas fa-arrow-left mr-2"></i>Back to Login
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Support Link -->
+                <div class="text-center mt-6">
+                    <p class="text-gray-400 text-sm">
+                        Still having trouble? 
+                        <a href="#" class="text-orange-500 hover:text-orange-400 font-semibold transition-colors">Contact Support</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form submission handler
+        document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Hide form and show success message
+                document.getElementById('resetForm').style.display = 'none';
+                document.getElementById('successMessage').classList.remove('hidden');
+                document.getElementById('emailSent').textContent = email;
+                
+                // Log email (in real app, send to server)
+                console.log('Password reset requested for:', email);
+                
+                // Reset form for potential retry
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 1000);
+            }, 2000);
+        });
+        
+        // Resend email function
+        function resendEmail() {
+            const email = document.getElementById('emailSent').textContent;
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Resending...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check mr-2"></i>Email Sent!';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 2000);
+            }, 1500);
+            
+            console.log('Resend password reset for:', email);
+        }
+        
+        // Go back to login
+        function goBack() {
+            alert('Redirecting to login page...');
+            // window.location.href = 'login.html';
+        }
+        
+        // Form field focus effects
+        document.querySelectorAll('.form-field').forEach(field => {
+            field.addEventListener('focus', function() {
+                this.parentElement.querySelector('label').style.color = '#f97316';
+            });
+            
+            field.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.querySelector('label').style.color = '#e5e7eb';
+                }
+            });
+        });
+        
+        // Real-time form validation
+        function validateForm() {
+            const email = document.getElementById('email').value.trim();
+            const submitBtn = document.querySelector('button[type="submit"]');
+            
+            const isValid = email && email.includes('@');
+            
+            submitBtn.disabled = !isValid;
+            submitBtn.style.opacity = isValid ? '1' : '0.6';
+        }
+        
+        // Add event listener for real-time validation
+        document.getElementById('email').addEventListener('input', validateForm);
+        
+        // Initial validation check
+        validateForm();
+    </script>
+</body>
+</html>
