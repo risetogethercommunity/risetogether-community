@@ -28,11 +28,10 @@
                     <a href="../activities.html" class="hover:text-orange-500 transition-colors">Activities</a>
                     <a href="../blogs.html" class="hover:text-orange-500 transition-colors">Articles</a>
                 </div>
-                
-                <button class="btn-primary px-6 py-2 rounded-full font-semibold glow-orange">
+                <a href="{% url 'accounts:join' %}" class="btn-primary px-6 py-2 rounded-full font-semibold glow-orange">
                     Join Community
-                </button>
-                
+                </a>
+
                 <div class="md:hidden">
                     <button id="mobile-menu-btn" class="text-orange-500">
                         <i class="fas fa-bars text-xl"></i>
@@ -95,12 +94,13 @@
                 
                 <!-- Call-to-Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                    <button class="btn-primary px-8 py-4 rounded-full text-lg font-semibold glow-orange hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+
+                    <a href="{% url 'accounts:login' %}" class="btn-primary px-8 py-4 rounded-full text-lg font-semibold glow-orange hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                         <i class="fas fa-users mr-2"></i>Join the Community
-                    </button>
-                    <button class="border-2 border-orange-500 text-orange-400 px-8 py-4 rounded-full text-lg font-semibold hover:bg-orange-500 hover:text-white transition-all duration-300 backdrop-blur-sm bg-white/5">
+                    </a>
+                    <a href="#" class="border-2 border-orange-500 text-orange-400 px-8 py-4 rounded-full text-lg font-semibold hover:bg-orange-500 hover:text-white transition-all duration-300 backdrop-blur-sm bg-white/5">
                         <i class="fas fa-play mr-2"></i>Watch Our Story
-                    </button>
+                    </a>
                 </div>
                 
             </div>

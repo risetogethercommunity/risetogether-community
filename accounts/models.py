@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.conf import settings
 from tinymce.models import HTMLField
-
 
 # ------------------ USER ------------------
 class User(AbstractUser):
@@ -15,13 +15,29 @@ class User(AbstractUser):
 
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='visitor')
 
+    # Fix reverse accessor clashes
+    groups = models.ManyToManyField(
+        Group,
+        related_name='custom_user_groups',  # unique name to avoid clash
+        blank=True,
+        help_text='The groups this user belongs to.',
+        verbose_name='groups'
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name='custom_user_permissions',  # unique name
+        blank=True,
+        help_text='Specific permissions for this user.',
+        verbose_name='user permissions'
+    )
+
     def __str__(self):
         return f"{self.username} ({self.get_role_display()})"
 
 
 # ------------------ PROFILE ------------------
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="profile")
     profile_pic = models.ImageField(upload_to="profile_pics/", blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     activity_score = models.PositiveIntegerField(default=0)
@@ -43,9 +59,9 @@ class ProfileLink(models.Model):
 
 # ------------------ VISITOR EXTENSIONS ------------------
 class VisitorPreference(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="preferences")
-    liked_posts = models.ManyToManyField("Blog", blank=True, related_name="liked_by")
-    liked_projects = models.ManyToManyField("Project", blank=True, related_name="liked_by")
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="preferences")
+    liked_posts = models.ManyToManyField("community.Blog", blank=True, related_name="liked_by")       # fix: community app
+    liked_projects = models.ManyToManyField("community.Project", blank=True, related_name="liked_by") # fix: community app
     # we will create Comment model later and link it here
     notifications_enabled = models.BooleanField(default=True)
 

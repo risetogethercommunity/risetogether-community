@@ -1,9 +1,10 @@
 from django.db import models
 from tinymce.models import HTMLField
 from django.utils import timezone
-from accounts.models import User
+from django.conf import settings  # use AUTH_USER_MODEL
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+# ------------------ CONTACT ------------------
 class Contact(models.Model):
     name = models.CharField(max_length=150)
     email = models.EmailField()
@@ -15,6 +16,7 @@ class Contact(models.Model):
         return f"{self.name} - {self.email}"
 
 
+# ------------------ FAQ ------------------
 class FAQ(models.Model):
     question = models.CharField(max_length=255)
     answer = models.TextField()
@@ -23,11 +25,11 @@ class FAQ(models.Model):
         return self.question
 
 
-
+# ------------------ TESTIMONIAL ------------------
 class Testimonial(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="testimonials")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name="testimonials")
     name = models.CharField(max_length=150, blank=True, null=True)  # optional fallback if no user
-    stars = models.PositiveSmallIntegerField(default=5)  # rating out of 5
+    stars = models.PositiveSmallIntegerField(default=5, validators=[MinValueValidator(1), MaxValueValidator(5)])  # rating out of 5
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -35,6 +37,7 @@ class Testimonial(models.Model):
         return f"Testimonial ({self.stars}★)"
 
 
+# ------------------ SITE CONFIG ------------------
 class SiteConfig(models.Model):
     about_us = HTMLField(blank=True, null=True)
     members_count = models.PositiveIntegerField(default=0)
@@ -45,6 +48,7 @@ class SiteConfig(models.Model):
         return "Site Configuration"
 
 
+# ------------------ MISSION ------------------
 class Mission(models.Model):
     site_config = models.ForeignKey(SiteConfig, related_name="missions", on_delete=models.CASCADE)
     icon = models.CharField(max_length=100)  # store icon class name (like FontAwesome)
@@ -54,6 +58,8 @@ class Mission(models.Model):
     def __str__(self):
         return self.title
 
+
+# ------------------ ACHIEVEMENT ------------------
 class Achievement(models.Model):
     ICON_TYPE = (
         ('icon', 'Icon (CSS Class)'),

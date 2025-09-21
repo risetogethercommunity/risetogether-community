@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -221,7 +222,7 @@
                     <!-- Profile Info -->
                     <div class="profile-info flex-1 text-center md:text-left">
                         <div class="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-                            <h1 class="font-rajdhani text-3xl font-bold">Rahul Sharma</h1>
+                            <h1 class="font-rajdhani text-3xl font-bold">{{ user.first_name }} {{ user.last_name }}</h1>
                             <div class="flex gap-3 justify-center md:justify-start">
                                 <button class="btn-primary px-4 py-2 rounded-lg font-semibold text-sm">
                                     <i class="fas fa-edit mr-2"></i>Edit Profile
