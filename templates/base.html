@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} - Rise Together - Learn. Build. Grow.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .font-rajdhani {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .glow-orange {
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+        }
+        
+        .glow-orange-strong {
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+        }
+        
+        .glassmorphism {
+            backdrop-filter: blur(10px);
+            background: rgba(17, 24, 39, 0.8);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #111827 100%);
+        }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at center, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(249, 115, 22, 0.3); }
+            to { box-shadow: 0 0 40px rgba(249, 115, 22, 0.6); }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(249, 115, 22, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
+        }
+        
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+        
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .navbar-solid {
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(249, 115, 22, 0.2);
+        }
+        
+        /* Line clamp utility for blog descriptions */
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: linear-gradient(45deg, #f97316, #ea580c);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: particle-float 8s ease-in-out infinite;
+        }
+        
+        @keyframes particle-float {
+            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.7; }
+            25% { transform: translateY(-30px) translateX(10px); opacity: 1; }
+            50% { transform: translateY(-10px) translateX(-15px); opacity: 0.5; }
+            75% { transform: translateY(-40px) translateX(20px); opacity: 0.8; }
+        }
+        
+        .leaderboard-card {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(31, 41, 55, 0.6) 100%);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .leaderboard-card:hover {
+            border-color: rgba(249, 115, 22, 0.6);
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.2);
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-left: 24px;
+            padding-right: 24px;
+            padding-bottom: 0;
+        }
+        
+        .faq-answer.open {
+            max-height: 200px;
+            padding-bottom: 24px;
+        }
+        
+        .resource-item {
+            transition: all 0.3s ease;
+        }
+        
+        .team-scroll-container {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .team-scroll-track {
+            display: flex;
+            animation: scroll-left 30s linear infinite;
+        }
+        
+        .team-member-card {
+            min-width: 200px;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .team-scroll-track:hover {
+            animation-play-state: paused;
+        }
+        
+        .team-lead-special {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(234, 88, 12, 0.1) 100%);
+            border: 2px solid rgba(249, 115, 22, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-lead-special::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #f97316, #ea580c, #f97316);
+            border-radius: inherit;
+            z-index: -1;
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        
+        .deputy-lead-special {
+            background: linear-gradient(135deg, rgba(75, 85, 99, 0.2) 0%, rgba(55, 65, 81, 0.1) 100%);
+            border: 2px solid rgba(156, 163, 175, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .deputy-lead-special::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #9ca3af, #6b7280, #9ca3af);
+            border-radius: inherit;
+            z-index: -1;
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        
+        /* Mobile Responsive Styles - 320px and up */
+        @media (max-width: 768px) {
+            /* Base mobile styles */
+            body {
+                font-size: 14px;
+            }
+            
+            /* Section padding adjustments */
+            .py-20 {
+                padding-top: 3rem !important;
+                padding-bottom: 3rem !important;
+            }
+            
+            .py-16 {
+                padding-top: 2.5rem !important;
+                padding-bottom: 2.5rem !important;
+            }
+            
+            /* Container padding */
+            .px-4 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            /* Typography mobile adjustments */
+            .text-4xl, .text-5xl {
+                font-size: 1.875rem !important; /* 30px */
+                line-height: 2.25rem !important;
+            }
+            
+            .text-3xl {
+                font-size: 1.5rem !important; /* 24px */
+                line-height: 2rem !important;
+            }
+            
+            .text-2xl {
+                font-size: 1.25rem !important; /* 20px */
+                line-height: 1.75rem !important;
+            }
+            
+            .text-xl {
+                font-size: 1rem !important; /* 16px */
+                line-height: 1.5rem !important;
+            }
+            
+            .text-lg {
+                font-size: 0.875rem !important; /* 14px */
+                line-height: 1.25rem !important;
+            }
+            
+            /* Hero section mobile */
+            .min-h-screen {
+                min-height: 80vh !important;
+            }
+            
+            /* Button adjustments */
+            .btn-primary {
+                padding: 0.75rem 1.5rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            /* Card padding */
+            .p-8 {
+                padding: 1rem !important;
+            }
+            
+            .p-6 {
+                padding: 0.75rem !important;
+            }
+            
+            .p-4 {
+                padding: 0.5rem !important;
+            }
+            
+            /* Profile images mobile */
+            .w-32.h-32 {
+                width: 4rem !important;
+                height: 4rem !important;
+            }
+            
+            .w-24.h-24 {
+                width: 3rem !important;
+                height: 3rem !important;
+            }
+            
+            .w-16.h-16 {
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+            }
+            
+            .w-12.h-12 {
+                width: 2rem !important;
+                height: 2rem !important;
+            }
+            
+            /* Team cards mobile adjustments */
+            .team-lead-special {
+                padding: 1rem !important;
+            }
+            
+            .deputy-lead-special {
+                padding: 0.75rem !important;
+            }
+            
+            /* Grid adjustments */
+            .grid.md\\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .grid.lg\\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .grid.md\\:grid-cols-2 {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .grid.lg\\:grid-cols-2 {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            /* Team member scrolling cards */
+            .team-member-card {
+                min-width: 140px !important;
+                margin-right: 0.5rem !important;
+                padding: 0.5rem !important;
+            }
+            
+            /* Navigation mobile */
+            .navbar-solid {
+                padding: 0.5rem 0 !important;
+            }
+            
+            /* Icon sizes */
+            .w-10.h-10 {
+                width: 2rem !important;
+                height: 2rem !important;
+            }
+            
+            .w-8.h-8 {
+                width: 1.5rem !important;
+                height: 1.5rem !important;
+            }
+            
+            /* Margin/padding adjustments */
+            .mb-16 {
+                margin-bottom: 2rem !important;
+            }
+            
+            .mb-12 {
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .mb-8 {
+                margin-bottom: 1rem !important;
+            }
+            
+            .mb-6 {
+                margin-bottom: 0.75rem !important;
+            }
+            
+            .mb-4 {
+                margin-bottom: 0.5rem !important;
+            }
+            
+            /* Gap adjustments */
+            .gap-8 {
+                gap: 1rem !important;
+            }
+            
+            .gap-6 {
+                gap: 0.75rem !important;
+            }
+            
+            .gap-4 {
+                gap: 0.5rem !important;
+            }
+            
+            /* Space adjustments */
+            .space-x-8 > * + * {
+                margin-left: 1rem !important;
+            }
+            
+            .space-x-6 > * + * {
+                margin-left: 0.75rem !important;
+            }
+            
+            .space-x-4 > * + * {
+                margin-left: 0.5rem !important;
+            }
+            
+            .space-x-3 > * + * {
+                margin-left: 0.375rem !important;
+            }
+            
+            .space-y-6 > * + * {
+                margin-top: 1rem !important;
+            }
+            
+            .space-y-4 > * + * {
+                margin-top: 0.75rem !important;
+            }
+            
+            /* Form elements mobile */
+            input, textarea, select {
+                font-size: 0.875rem !important;
+                padding: 0.75rem !important;
+            }
+            
+            /* Leaderboard mobile */
+            .leaderboard-card {
+                padding: 1rem !important;
+            }
+            
+            /* FAQ mobile */
+            .faq-item .faq-question {
+                padding: 1rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            /* Contact form mobile */
+            .glassmorphism {
+                margin-bottom: 1rem !important;
+            }
+            
+            /* Blog section mobile optimizations */
+            .blog-card {
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .blog-card .h-48 {
+                height: 10rem !important; /* 160px */
+            }
+            
+            .blog-card .p-6 {
+                padding: 1rem !important;
+            }
+            
+            .blog-card .text-xl {
+                font-size: 1.125rem !important;
+                line-height: 1.5rem !important;
+            }
+            
+            /* Footer mobile optimization */
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            
+            /* Social icons mobile */
+            .social-icons {
+                justify-content: center !important;
+                gap: 1rem !important;
+            }
+            
+            /* Testimonial navigation mobile */
+            #prevBtn, #nextBtn {
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            /* Hero section mobile text optimization */
+            .hero-text h1 {
+                font-size: 2rem !important;
+                line-height: 2.5rem !important;
+            }
+            
+            .hero-text p {
+                font-size: 1rem !important;
+                line-height: 1.5rem !important;
+            }
+        }
+        
+        /* Tablet responsive styles (768px to 1024px) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            #testimonialsContainer {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1.5rem !important;
+            }
+            
+            #prevBtn {
+                left: -1rem !important;
+            }
+            
+            #nextBtn {
+                right: -1rem !important;
+            }
+        }
+        
+        /* Extra small devices (320px and up) */
+        @media (max-width: 480px) {
+            .px-4 {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+            
+            .text-4xl, .text-5xl {
+                font-size: 1.5rem !important; /* 24px */
+                line-height: 2rem !important;
+            }
+            
+            .text-3xl {
+                font-size: 1.25rem !important; /* 20px */
+                line-height: 1.75rem !important;
+            }
+            
+            .text-2xl {
+                font-size: 1.125rem !important; /* 18px */
+                line-height: 1.5rem !important;
+            }
+            
+            .btn-primary {
+                padding: 0.625rem 1.25rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .testimonial-card {
+                min-width: 260px !important;
+                padding: 0.75rem !important;
+            }
+            
+            .team-member-card {
+                min-width: 120px !important;
+                padding: 0.375rem !important;
+            }
+            
+            .w-32.h-32 {
+                width: 3rem !important;
+                height: 3rem !important;
+            }
+            
+            .w-24.h-24 {
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+            }
+            
+            /* Reduce icon badge sizes */
+            .-top-2.-right-2 {
+                top: -0.25rem !important;
+                right: -0.25rem !important;
+            }
+            
+            .w-12.h-12 {
+                width: 1.75rem !important;
+                height: 1.75rem !important;
+            }
+            
+            .w-10.h-10 {
+                width: 1.5rem !important;
+                height: 1.5rem !important;
+            }
+        }
+        
+        /* Landscape orientation adjustments for mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .min-h-screen {
+                min-height: 100vh !important;
+            }
+            
+            .py-20 {
+                padding-top: 1.5rem !important;
+                padding-bottom: 1.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="font-rajdhani text-2xl font-bold text-orange-500 text-glow flex items-center">
+                        <img src="logo.png" alt="Rise Together Logo" class="w-8 h-8 mr-2 rounded-lg object-cover">Rise Together
+                    </h1>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="Home.html#home" class="hover:text-orange-500 transition-colors">Home</a>
+                    <a href="resources.html" class="hover:text-orange-500 transition-colors">Resources</a>
+                    <a href="projects.html" class="hover:text-orange-500 transition-colors">Projects</a>
+                    <a href="Home.html#team" class="hover:text-orange-500 transition-colors">Team</a>
+                    <a href="activities.html" class="hover:text-orange-500 transition-colors">Activities</a>
+                    <a href="Home.html#contact" class="hover:text-orange-500 transition-colors">Contact</a>
+                    <a href="blogs.html" class="hover:text-orange-500 transition-colors">Articles</a>
+                </div>
+                
+                <button class="btn-primary px-6 py-2 rounded-full font-semibold glow-orange">
+                    Join Community
+                </button>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-orange-500">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden glassmorphism">
+            <div class="px-4 py-2 space-y-2">
+                <a href="Home.html#home" class="block py-2 hover:text-orange-500">Home</a>
+                <a href="resources.html" class="block py-2 hover:text-orange-500">Resources</a>
+                <a href="projects.html" class="block py-2 hover:text-orange-500">Projects</a>
+                <a href="Home.html#team" class="block py-2 hover:text-orange-500">Team</a>
+                <a href="activities.html" class="block py-2 hover:text-orange-500">Activities</a>
+                <a href="Home.html#contact" class="block py-2 hover:text-orange-500">Contact</a>
+                <a href="blogs.html" class="block py-2 hover:text-orange-500">Articles</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="footer-grid grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div>
+                    <h3 class="font-rajdhani text-2xl font-bold text-orange-500 mb-6 flex items-center">
+                        <img src="logo.png" alt="Rise Together Logo" class="w-8 h-8 mr-2 rounded-lg object-cover">Rise Together
+                    </h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Empowering the next generation of tech leaders through collaborative learning, innovative projects, and endless possibilities.
+                    </p>
+                    <div class="social-icons flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links and Explore Side by Side -->
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-rajdhani text-xl font-bold mb-6">Quick Links</h4>
+                        <div class="space-y-3">
+                            <a href="Home.html#home" class="block text-gray-400 hover:text-orange-500 transition-colors">Home</a>
+                            <a href="#" class="block text-gray-400 hover:text-orange-500 transition-colors">Events</a>
+                            <a href="resources.html" class="block text-gray-400 hover:text-orange-500 transition-colors">Resources</a>
+                            <a href="Home.html#projects" class="block text-gray-400 hover:text-orange-500 transition-colors">Projects</a>
+                            <a href="Home.html#activities" class="block text-gray-400 hover:text-orange-500 transition-colors">Activities</a>
+                            <a href="Home.html#contact" class="block text-gray-400 hover:text-orange-500 transition-colors">Contact</a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-rajdhani text-xl font-bold mb-6">Explore</h4>
+                        <div class="space-y-3">
+                            <a href="Home.html#about" class="block text-gray-400 hover:text-orange-500 transition-colors">About Us</a>
+                            <a href="Home.html#team" class="block text-gray-400 hover:text-orange-500 transition-colors">Our Team</a>
+                            <a href="Home.html#testimonials" class="block text-gray-400 hover:text-orange-500 transition-colors">Testimonials</a>
+                            <a href="Home.html#leaderboard" class="block text-gray-400 hover:text-orange-500 transition-colors">Leaderboard</a>
+                            <a href="Home.html#faq" class="block text-gray-400 hover:text-orange-500 transition-colors">FAQ</a>
+                            <a href="#" class="block text-gray-400 hover:text-orange-500 transition-colors">Blog</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-rajdhani text-xl font-bold mb-6">Connect</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-orange-500 mr-3"></i>
+                            <span class="text-gray-400">contact@risetogether.in</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fab fa-discord text-orange-500 mr-3"></i>
+                            <span class="text-gray-400">Join our Discord</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-orange-500 mr-3"></i>
+                            <span class="text-gray-400">New Delhi, India</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h5 class="font-semibold mb-4">Stay Updated</h5>
+                        <div class="flex">
+                            <input type="email" placeholder="Your email" class="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-l-lg focus:border-orange-500 focus:outline-none">
+                            <button class="px-6 py-2 bg-orange-500 text-white rounded-r-lg hover:bg-orange-600 transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2024 Rise Together. Made with <i class="fas fa-heart text-orange-500"></i> by our amazing community.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Base Scripts -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-solid');
+            } else {
+                navbar.classList.remove('navbar-solid');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Enhanced scroll animations
+        const enhancedObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observe all scroll-animate elements
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            enhancedObserver.observe(el);
+        });
+
+        // Newsletter subscription
+        const newsletterForm = document.querySelector('footer input[type="email"]')?.parentNode;
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input').value;
+                if (email) {
+                    alert('Thank you for subscribing to our newsletter!');
+                    this.querySelector('input').value = '';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
