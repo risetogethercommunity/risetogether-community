@@ -2,8 +2,6 @@
 
 <div align="center">
 
-![Rise Together Logo](static/images/logo.png)
-
 ### Learn. Build. Grow.
 
 **Empowering the next generation of tech leaders through collaborative learning, innovative projects, and endless possibilities.**
