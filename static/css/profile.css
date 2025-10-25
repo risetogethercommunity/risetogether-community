@@ -1,0 +1,175 @@
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+.font-rajdhani {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.glow-orange {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+}
+
+.glassmorphism {
+    backdrop-filter: blur(10px);
+    background: rgba(17, 24, 39, 0.8);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaCUyMGNvbW11bml0eXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=1920&q=60');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(2px);
+    z-index: -2;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(17, 24, 39, 0.9) 50%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: -1;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(75, 85, 99, 0.3);
+    border: 1px solid rgba(75, 85, 99, 0.5);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: rgba(75, 85, 99, 0.4);
+    border-color: rgba(249, 115, 22, 0.5);
+    transform: translateY(-2px);
+}
+
+/* --- UPDATED PROFILE PICTURE STYLE --- */
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border: 3px solid #f97316;
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+    border-radius: 1.5rem; /* This creates the "squircle" effect */
+}
+
+.stats-number {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* --- NEW TAB STYLES --- */
+.tab-button {
+    padding: 0.75rem 1.5rem;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    color: #9ca3af; /* text-gray-400 */
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.tab-button.active {
+    color: #f97316; /* text-orange-500 */
+    border-bottom-color: #f97316;
+    background: rgba(249, 115, 22, 0.05);
+}
+
+.tab-button:hover:not(.active) {
+    color: #fb923c; /* text-orange-400 */
+    background: rgba(249, 115, 22, 0.03);
+}
+
+/* --- NEW PLACEHOLDER STYLES --- */
+.placeholder-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 1rem;
+    border: 2px dashed rgba(75, 85, 99, 0.5); /* border-gray-600 */
+    border-radius: 1rem; /* rounded-xl */
+}
+
+.placeholder-content .icon {
+    font-size: 3rem; /* text-5xl */
+    color: rgba(249, 115, 22, 0.5); /* text-orange-500/50 */
+    margin-bottom: 1rem;
+}
+
+/* --- NEW LEADERBOARD STYLES --- */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.leaderboard-table th, .leaderboard-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(75, 85, 99, 0.3); /* border-gray-700 */
+}
+
+.leaderboard-table th {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.125rem; /* text-lg */
+    color: #d1d5db; /* text-gray-300 */
+}
+
+.leaderboard-table tbody tr:hover {
+    background-color: rgba(249, 115, 22, 0.05);
+}
+
+/* Highlight the current user's rank */
+.leaderboard-table .user-rank {
+    background-color: rgba(249, 115, 22, 0.1);
+    border-left: 3px solid #f97316;
+    font-weight: bold;
+}
+
+.leaderboard-table .rank {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #9ca3af;
+    width: 50px;
+}
+
+.leaderboard-table .member-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.leaderboard-table .member-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px; /* rounded-full */
+    object-fit: cover;
+}
+
+.leaderboard-table .score {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #fb923c; /* text-orange-400 */
+    text-align: right;
+}

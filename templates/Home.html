@@ -1,57 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rise Together - Learn. Build. Grow.</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-</head>
-<body class="bg-black text-white min-h-screen">
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <h1 class="font-rajdhani text-2xl font-bold text-orange-500 text-glow flex items-center">
-                        <img src="logo.png" alt="Rise Together Logo" class="w-8 h-8 mr-2 rounded-lg object-cover">Rise Together
-                    </h1>
-                </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="hover:text-orange-500 transition-colors">Home</a>
-                    <a href="../resources.html" class="hover:text-orange-500 transition-colors">Resources</a>
-                    <a href="../projects.html" class="hover:text-orange-500 transition-colors">Projects</a>
-                    <a href="../activities.html" class="hover:text-orange-500 transition-colors">Activities</a>
-                    <a href="../blogs.html" class="hover:text-orange-500 transition-colors">Articles</a>
-                </div>
-                <a href="{% url 'accounts:join' %}" class="btn-primary px-6 py-2 rounded-full font-semibold glow-orange">
-                    Join Community
-                </a>
 
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-orange-500">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden glassmorphism">
-            <div class="px-4 py-2 space-y-2">
-                <a href="#home" class="block py-2 hover:text-orange-500">Home</a>
-                <a href="../resources.html" class="block py-2 hover:text-orange-500">Resources</a>
-                <a href="../projects.html" class="block py-2 hover:text-orange-500">Projects</a>
-                <a href="../activities.html" class="block py-2 hover:text-orange-500">Activities</a>
-                <a href="../blogs.html" class="block py-2 hover:text-orange-500">Articles</a>
-            </div>
-        </div>
-    </nav>
-
+{% block content %}
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
         <!-- Background Image with Overlay -->
@@ -703,7 +653,7 @@
                         <div class="flex justify-center mb-2">
                             <i class="fas fa-medal text-2xl text-gray-400"></i>
                         </div>
-                        <h3 class="font-rajdhani text-xl font-bold">Rahul Sharma</h3>
+                        <h3 class="font-rajdhani text-xl font-bold">Roshan Kumar</h3>
                         <p class="text-orange-500 font-semibold">1,420 pts</p>
                         <p class="text-sm text-gray-400">Full Stack Developer</p>
                     </div>
@@ -715,7 +665,7 @@
                         <div class="flex justify-center mb-2">
                             <i class="fas fa-trophy text-3xl text-yellow-400"></i>
                         </div>
-                        <h3 class="font-rajdhani text-2xl font-bold">Priya Patel</h3>
+                        <h3 class="font-rajdhani text-2xl font-bold">Roshan Damor</h3>
                         <p class="text-orange-500 font-semibold text-lg">2,150 pts</p>
                         <p class="text-sm text-gray-400">AI/ML Enthusiast</p>
                     </div>
@@ -727,7 +677,7 @@
                         <div class="flex justify-center mb-2">
                             <i class="fas fa-medal text-2xl text-orange-400"></i>
                         </div>
-                        <h3 class="font-rajdhani text-xl font-bold">Arjun Kumar</h3>
+                        <h3 class="font-rajdhani text-xl font-bold">Roshan Kumar Damor</h3>
                         <p class="text-orange-500 font-semibold">1,280 pts</p>
                         <p class="text-sm text-gray-400">Mobile App Developer</p>
                     </div>
@@ -751,7 +701,27 @@
                             <div class="flex items-center">
                                 <span class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center mr-4 font-bold">5</span>
                                 <div>
-                                    <h4 class="font-semibold">Vikash Singh</h4>
+                                    <h4 class="font-semibold">Ishika Singh</h4>
+                                    <p class="text-sm text-gray-400">DevOps Engineer</p>
+                                </div>
+                            </div>
+                            <span class="text-orange-500 font-semibold">1,050 pts</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-gray-800 rounded-lg">
+                            <div class="flex items-center">
+                                <span class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center mr-4 font-bold">5</span>
+                                <div>
+                                    <h4 class="font-semibold">Sanjeet Valmik</h4>
+                                    <p class="text-sm text-gray-400">DevOps Engineer</p>
+                                </div>
+                            </div>
+                            <span class="text-orange-500 font-semibold">1,050 pts</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-gray-800 rounded-lg">
+                            <div class="flex items-center">
+                                <span class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center mr-4 font-bold">5</span>
+                                <div>
+                                    <h4 class="font-semibold">Riya Nirak</h4>
                                     <p class="text-sm text-gray-400">DevOps Engineer</p>
                                 </div>
                             </div>
@@ -780,14 +750,14 @@
                     <div class="deputy-lead-special glassmorphism rounded-2xl p-6 text-center card-hover">
                         <div class="relative mb-6">
                             <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-3 border-gray-400 shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1494790108755-2616b0f3c1a0?w=200&h=200&fit=crop&crop=face" 
+                                <img src="{% static 'images/sanjeet.jpg' %}" 
                                      alt="Deputy Lead" class="w-full h-full object-cover">
                             </div>
                             <div class="absolute -top-2 -right-2 w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-600 rounded-full flex items-center justify-center shadow-lg">
                                 <i class="fas fa-star text-white text-sm"></i>
                             </div>
                         </div>
-                        <h3 class="font-rajdhani text-xl font-bold mb-2 text-white">Priya Patel</h3>
+                        <h3 class="font-rajdhani text-xl font-bold mb-2 text-white">Sanjeet</h3>
                         <p class="text-blue-400 font-semibold mb-2">Deputy Lead</p>
                         <p class="text-gray-300 text-sm mb-4">Technical Operations</p>
                         <div class="flex justify-center space-x-3">
@@ -804,14 +774,14 @@
                     <div class="team-lead-special glassmorphism rounded-2xl p-8 text-center card-hover">
                         <div class="relative mb-6">
                             <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-orange-500 shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" 
+                                <img src="{% static 'images/roshan.png' %}" 
                                      alt="Team Lead" class="w-full h-full object-cover">
                             </div>
                             <div class="absolute -top-2 -right-2 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
                                 <i class="fas fa-crown text-white text-lg"></i>
                             </div>
                         </div>
-                        <h3 class="font-rajdhani text-2xl font-bold mb-2 text-white">Rahul Sharma</h3>
+                        <h3 class="font-rajdhani text-2xl font-bold mb-2 text-white">Roshan Damor</h3>
                         <p class="text-yellow-300 font-semibold mb-2">Team Lead</p>
                         <p class="text-gray-100 text-sm mb-4">Full Stack Developer | Community Builder</p>
                         <div class="flex justify-center space-x-4">
@@ -831,14 +801,14 @@
                     <div class="deputy-lead-special glassmorphism rounded-2xl p-6 text-center card-hover">
                         <div class="relative mb-6">
                             <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-3 border-gray-400 shadow-lg">
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" 
+                                <img src="{% static 'images/nishu.jpg' %}" 
                                      alt="Deputy Lead" class="w-full h-full object-cover">
                             </div>
                             <div class="absolute -top-2 -right-2 w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-600 rounded-full flex items-center justify-center shadow-lg">
                                 <i class="fas fa-star text-white text-sm"></i>
                             </div>
                         </div>
-                        <h3 class="font-rajdhani text-xl font-bold mb-2 text-white">Arjun Singh</h3>
+                        <h3 class="font-rajdhani text-xl font-bold mb-2 text-white">Nishchhal Singh</h3>
                         <p class="text-blue-400 font-semibold mb-2">Deputy Lead</p>
                         <p class="text-gray-300 text-sm mb-4">Strategic Planning</p>
                         <div class="flex justify-center space-x-3">
@@ -859,10 +829,10 @@
                     <!-- Co-Lead 1 -->
                     <div class="glassmorphism rounded-2xl p-6 text-center card-hover">
                         <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-3 border-orange-400 mb-4 shadow-lg">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" 
+                            <img src="{% static 'images/sneha.jpg' %}" 
                                  alt="Co-Lead" class="w-full h-full object-cover">
                         </div>
-                        <h4 class="font-rajdhani text-xl font-bold mb-2">Meera Joshi</h4>
+                        <h4 class="font-rajdhani text-xl font-bold mb-2">Sneha Borban</h4>
                         <p class="text-orange-400 font-semibold mb-2">Co-Lead</p>
                         <p class="text-gray-300 text-sm mb-4">UI/UX Designer</p>
                         <div class="flex justify-center space-x-3">
@@ -878,10 +848,10 @@
                     <!-- Co-Lead 2 -->
                     <div class="glassmorphism rounded-2xl p-6 text-center card-hover">
                         <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-3 border-orange-400 mb-4 shadow-lg">
-                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=face" 
+                            <img src="{% static 'images/riya.jpg' %}" 
                                  alt="Co-Lead" class="w-full h-full object-cover">
                         </div>
-                        <h4 class="font-rajdhani text-xl font-bold mb-2">Karan Malhotra</h4>
+                        <h4 class="font-rajdhani text-xl font-bold mb-2">Riya Saryam</h4>
                         <p class="text-orange-400 font-semibold mb-2">Co-Lead</p>
                         <p class="text-gray-300 text-sm mb-4">Data Scientist</p>
                         <div class="flex justify-center space-x-3">
@@ -897,10 +867,10 @@
                     <!-- Co-Lead 3 -->
                     <div class="glassmorphism rounded-2xl p-6 text-center card-hover">
                         <div class="w-24 h-24 mx-auto rounded-full overflow-hidden border-3 border-orange-400 mb-4 shadow-lg">
-                            <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=200&h=200&fit=crop&crop=face" 
+                            <img src="{% static 'images/ishika.jpg' %}" 
                                  alt="Co-Lead" class="w-full h-full object-cover">
                         </div>
-                        <h4 class="font-rajdhani text-xl font-bold mb-2">Ravi Agarwal</h4>
+                        <h4 class="font-rajdhani text-xl font-bold mb-2">Ishika Gupta</h4>
                         <p class="text-orange-400 font-semibold mb-2">Co-Lead</p>
                         <p class="text-gray-300 text-sm mb-4">Mobile Developer</p>
                         <div class="flex justify-center space-x-3">
@@ -1596,23 +1566,36 @@
                 </h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto mb-8"></div>
             </div>
+
+            <!-- Display Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="mb-6 scroll-animate">
+                        <div class="glassmorphism text-center p-4 rounded-lg {% if message.tags == 'error' %}bg-red-500/20 text-red-400 border-red-500/30{% else %}bg-green-500/20 text-green-400 border-green-500/30{% endif %} border">
+                            <i class="fas {% if message.tags == 'error' %}fa-exclamation-circle{% else %}fa-check-circle{% endif %} mr-2"></i>
+                            {{ message }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
             
             <div class="grid lg:grid-cols-2 gap-12 items-start">
                 <div class="scroll-animate">
                     <div class="glassmorphism p-8 rounded-2xl">
                         <h3 class="font-rajdhani text-2xl font-bold mb-6 text-orange-500">Send us a Message</h3>
-                        <form class="space-y-6">
+                        <form method="POST" action="{% url 'home' %}#contact" class="space-y-6">
+                            {% csrf_token %}
                             <div>
-                                <label class="block text-sm font-medium mb-2">Name</label>
-                                <input type="text" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-orange-500 focus:ring-2 focus:ring-orange-500 focus:ring-opacity-20 transition-all" placeholder="Your full name">
+                                <label for="name" class="block text-sm font-medium mb-2">Name</label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-orange-500 focus:ring-2 focus:ring-orange-500 focus:ring-opacity-20 transition-all" placeholder="Your full name">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium mb-2">Email</label>
-                                <input type="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-orange-500 focus:ring-2 focus:ring-orange-500 focus:ring-opacity-20 transition-all" placeholder="your.email@example.com">
+                                <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-orange-500 focus:ring-2 focus:ring-orange-500 focus:ring-opacity-20 transition-all" placeholder="your.email@example.com">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium mb-2">Message</label>
-                                <textarea rows="5" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-orange-500 focus:ring-2 focus:ring-orange-500 focus:ring-opacity-20 transition-all" placeholder="Tell us more..."></textarea>
+                                <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                                <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-orange-500 focus:ring-2 focus:ring-orange-500 focus:ring-opacity-20 transition-all" placeholder="Tell us more..."></textarea>
                             </div>
                             <button type="submit" class="w-full btn-primary py-3 rounded-lg font-semibold glow-orange">
                                 <i class="fas fa-paper-plane mr-2"></i>Send Message
@@ -1692,120 +1675,8 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-black py-16 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="footer-grid grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div>
-                    <h3 class="font-rajdhani text-2xl font-bold text-orange-500 mb-6 flex items-center">
-                        <img src="logo.png" alt="Rise Together Logo" class="w-8 h-8 mr-2 rounded-lg object-cover">Rise Together
-                    </h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed">
-                        Empowering the next generation of tech leaders through collaborative learning, innovative projects, and endless possibilities.
-                    </p>
-                    <div class="social-icons flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Quick Links and Explore Side by Side -->
-                <div class="grid grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="font-rajdhani text-xl font-bold mb-6">Quick Links</h4>
-                        <div class="space-y-3">
-                            <a href="#home" class="block text-gray-400 hover:text-orange-500 transition-colors">Home</a>
-                            <a href="#" class="block text-gray-400 hover:text-orange-500 transition-colors">Events</a>
-                            <a href="../resources.html" class="block text-gray-400 hover:text-orange-500 transition-colors">Resources</a>
-                            <a href="#projects" class="block text-gray-400 hover:text-orange-500 transition-colors">Projects</a>
-                            <a href="#activities" class="block text-gray-400 hover:text-orange-500 transition-colors">Activities</a>
-                            <a href="#contact" class="block text-gray-400 hover:text-orange-500 transition-colors">Contact</a>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h4 class="font-rajdhani text-xl font-bold mb-6">Explore</h4>
-                        <div class="space-y-3">
-                            <a href="#about" class="block text-gray-400 hover:text-orange-500 transition-colors">About Us</a>
-                            <a href="#team" class="block text-gray-400 hover:text-orange-500 transition-colors">Our Team</a>
-                            <a href="#testimonials" class="block text-gray-400 hover:text-orange-500 transition-colors">Testimonials</a>
-                            <a href="#leaderboard" class="block text-gray-400 hover:text-orange-500 transition-colors">Leaderboard</a>
-                            <a href="#faq" class="block text-gray-400 hover:text-orange-500 transition-colors">FAQ</a>
-                            <a href="#" class="block text-gray-400 hover:text-orange-500 transition-colors">Blog</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-rajdhani text-xl font-bold mb-6">Connect</h4>
-                    <div class="space-y-4">
-                        <div class="flex items-center">
-                            <i class="fas fa-envelope text-orange-500 mr-3"></i>
-                            <span class="text-gray-400">contact@risetogether.in</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fab fa-discord text-orange-500 mr-3"></i>
-                            <span class="text-gray-400">Join our Discord</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-map-marker-alt text-orange-500 mr-3"></i>
-                            <span class="text-gray-400">New Delhi, India</span>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <h5 class="font-semibold mb-4">Stay Updated</h5>
-                        <div class="flex">
-                            <input type="email" placeholder="Your email" class="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-l-lg focus:border-orange-500 focus:outline-none">
-                            <button class="px-6 py-2 bg-orange-500 text-white rounded-r-lg hover:bg-orange-600 transition-colors">
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
-                <p class="text-gray-400">
-                    © 2024 Rise Together. Made with <i class="fas fa-heart text-orange-500"></i> by our amazing community.
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
+    <!-- Additional Scripts for Home Page -->
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('navbar-solid');
-            } else {
-                navbar.classList.remove('navbar-solid');
-            }
-        });
-
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuBtn.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
-
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1817,7 +1688,10 @@
                         block: 'start'
                     });
                     // Close mobile menu if open
-                    mobileMenu.classList.add('hidden');
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('hidden');
+                    }
                 }
             });
         });
@@ -2001,5 +1875,4 @@
             });
         });
     </script>
-</body>
-</html>
+{% endblock %}

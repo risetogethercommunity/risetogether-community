@@ -4,200 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - Rise Together</title>
+    <title>{{ user.first_name }}'s Profile - Rise Together</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-        
-        .font-rajdhani {
-            font-family: 'Rajdhani', sans-serif;
-        }
-        
-        .glow-orange {
-            box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
-        }
-        
-        .glow-orange-strong {
-            box-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
-        }
-        
-        .glassmorphism {
-            backdrop-filter: blur(10px);
-            background: rgba(17, 24, 39, 0.8);
-            border: 1px solid rgba(249, 115, 22, 0.2);
-        }
-        
-        .background-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaCUyMGNvbW11bml0eXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=1920&q=60');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            filter: blur(2px);
-            z-index: -2;
-        }
-        
-        .background-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(17, 24, 39, 0.9) 50%, rgba(0, 0, 0, 0.8) 100%);
-            z-index: -1;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
-        }
-        
-        .btn-secondary {
-            background: rgba(75, 85, 99, 0.3);
-            border: 1px solid rgba(75, 85, 99, 0.5);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(75, 85, 99, 0.4);
-            border-color: rgba(249, 115, 22, 0.5);
-            transform: translateY(-2px);
-        }
-        
-        .profile-pic {
-            width: 120px;
-            height: 120px;
-            border: 3px solid #f97316;
-            box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
-        }
-        
-        .tab-button {
-            padding: 0.75rem 1.5rem;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-            color: #9ca3af;
-        }
-        
-        .tab-button.active {
-            color: #f97316;
-            border-bottom-color: #f97316;
-            background: rgba(249, 115, 22, 0.1);
-        }
-        
-        .tab-button:hover {
-            color: #f97316;
-            background: rgba(249, 115, 22, 0.05);
-        }
-        
-        .activity-day {
-            width: 12px;
-            height: 12px;
-            border-radius: 2px;
-            margin: 1px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-        
-        .activity-day:hover {
-            transform: scale(1.2);
-        }
-        
-        .activity-level-0 { background-color: #374151; }
-        .activity-level-1 { background-color: rgba(249, 115, 22, 0.3); }
-        .activity-level-2 { background-color: rgba(249, 115, 22, 0.6); }
-        .activity-level-3 { background-color: rgba(249, 115, 22, 0.8); }
-        .activity-level-4 { background-color: #f97316; }
-        
-        .post-card {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(249, 115, 22, 0.2);
-        }
-        
-        .stats-number {
-            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
-            .profile-pic {
-                width: 80px;
-                height: 80px;
-            }
-            
-            .profile-header {
-                padding: 1rem !important;
-            }
-            
-            .stats-container {
-                justify-content: space-around !important;
-            }
-            
-            .tab-button {
-                padding: 0.5rem 1rem !important;
-                font-size: 0.875rem !important;
-            }
-            
-            .post-card {
-                margin-bottom: 1rem !important;
-            }
-            
-            .activity-day {
-                width: 10px;
-                height: 10px;
-            }
-            
-            .glassmorphism {
-                margin: 0.5rem !important;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .profile-pic {
-                width: 70px;
-                height: 70px;
-            }
-            
-            .profile-header {
-                text-align: center !important;
-            }
-            
-            .profile-info {
-                margin-top: 1rem !important;
-            }
-            
-            .stats-container {
-                margin-top: 1rem !important;
-            }
-            
-            .activity-day {
-                width: 8px;
-                height: 8px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 </head>
 <body class="bg-black text-white min-h-screen">
     <!-- Background -->
@@ -207,353 +19,185 @@
     <!-- Main Container -->
     <div class="relative z-10 min-h-screen py-8">
         <div class="max-w-4xl mx-auto px-4">
+
+            <!-- Display Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="glassmorphism text-center p-3 rounded-lg mb-4 {% if message.tags == 'error' %}bg-red-500/20 text-red-400{% else %}bg-green-500/20 text-green-400{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
             
             <!-- Profile Header -->
             <div class="glassmorphism rounded-2xl p-6 mb-6 glow-orange">
-                <div class="profile-header flex flex-col md:flex-row items-center md:items-start gap-6">
-                    
-                    <!-- Profile Picture -->
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
                     <div class="flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" 
-                             alt="Profile Picture" 
-                             class="profile-pic rounded-full object-cover">
+                        {% if user.profile and user.profile.profile_pic %}
+                            <img src="{{ user.profile.profile_pic.url }}" alt="Profile Picture" class="profile-pic object-cover">
+                        {% else %}
+                            <img src="{% static 'images/default-avatar.png' %}" alt="Profile Picture" class="profile-pic object-cover">
+                        {% endif %}
                     </div>
-                    
-                    <!-- Profile Info -->
-                    <div class="profile-info flex-1 text-center md:text-left">
+                    <div class="flex-1 text-center md:text-left">
                         <div class="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-                            <h1 class="font-rajdhani text-3xl font-bold">{{ user.first_name }} {{ user.last_name }}</h1>
+                            <h1 class="font-rajdhani text-3xl font-bold">{{ user.first_name|default:"User" }} {{ user.last_name|default:"" }}</h1>
                             <div class="flex gap-3 justify-center md:justify-start">
-                                <button class="btn-primary px-4 py-2 rounded-lg font-semibold text-sm">
+                                <a href="{% url 'accounts:edit_profile' %}" class="btn-primary px-4 py-2 rounded-lg font-semibold text-sm">
                                     <i class="fas fa-edit mr-2"></i>Edit Profile
-                                </button>
+                                </a>
                                 <button class="btn-secondary px-4 py-2 rounded-lg font-semibold text-sm text-white">
                                     <i class="fas fa-share mr-2"></i>Share
                                 </button>
                             </div>
                         </div>
                         
-                        <!-- Stats -->
-                        <div class="stats-container flex gap-8 mb-4 justify-center md:justify-start">
+                        <!-- ***** UPDATED STATS SECTION ***** -->
+                        <div class="flex gap-8 mb-4 justify-center md:justify-start">
                             <div class="text-center">
-                                <div class="font-bold text-xl stats-number">42</div>
+                                <div class="font-bold text-xl stats-number">{{ user.profile.posts_shared_count|default:0 }}</div>
                                 <div class="text-gray-400 text-sm">Posts</div>
                             </div>
-                            <div class="text-center">
-                                <div class="font-bold text-xl stats-number">1.2k</div>
-                                <div class="text-gray-400 text-sm">Followers</div>
+                             <div class="text-center">
+                                <!-- This calls the new @property -->
+                                <div class="font-bold text-xl stats-number">{% if user.profile.blogs_count %}{{ user.profile.blogs_count }}{% else %}0{% endif %}</div>
+                                <div class="text-gray-400 text-sm">Blogs</div>
                             </div>
                             <div class="text-center">
-                                <div class="font-bold text-xl stats-number">345</div>
-                                <div class="text-gray-400 text-sm">Following</div>
+                                <!-- This calls the new @property -->
+                                <div class="font-bold text-xl stats-number">{% if user.profile.projects_count %}{{ user.profile.projects_count }}{% else %}0{% endif %}</div>
+                                <div class="text-gray-400 text-sm">Projects</div>
                             </div>
                         </div>
                         
-                        <!-- Bio -->
                         <div class="mb-4">
-                            <p class="text-gray-300 mb-2">
-                                Full Stack Developer | AI Enthusiast | Community Builder<br>
-                                Turning ideas into reality, one line of code at a time.
-                            </p>
-                            <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-                                <span class="inline-flex items-center px-3 py-1 bg-orange-500/20 text-orange-400 rounded-full text-sm">
-                                    <i class="fas fa-code mr-1"></i>JavaScript
-                                </span>
-                                <span class="inline-flex items-center px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">
-                                    <i class="fab fa-react mr-1"></i>React
-                                </span>
-                                <span class="inline-flex items-center px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm">
-                                    <i class="fab fa-node-js mr-1"></i>Node.js
-                                </span>
-                            </div>
+                            <p class="text-gray-300 mb-2">{{ user.profile.bio|default:"No bio available"|linebreaksbr }}</p>
                         </div>
-                        
-                        <!-- Links -->
                         <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                            <a href="#" class="text-orange-500 hover:text-orange-400 transition-colors">
-                                <i class="fas fa-link mr-1"></i>portfolio.dev
-                            </a>
-                            <a href="#" class="text-orange-500 hover:text-orange-400 transition-colors">
-                                <i class="fab fa-github mr-1"></i>github.com/rahul
-                            </a>
-                            <a href="#" class="text-orange-500 hover:text-orange-400 transition-colors">
-                                <i class="fab fa-linkedin mr-1"></i>linkedin.com/in/rahul
-                            </a>
+                            {% if user.profile %}
+                                {% for link in user.profile.links.all %}
+                                <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="text-orange-500 hover:text-orange-400 transition-colors">
+                                    <i class="fas fa-link mr-1"></i>{{ link.title }}
+                                </a>
+                                {% empty %}
+                                    <p class="text-sm text-gray-500">No social links added yet. Click 'Edit Profile' to add them!</p>
+                                {% endfor %}
+                            {% else %}
+                                <p class="text-sm text-gray-500">No social links added yet. Click 'Edit Profile' to add them!</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Content Tabs -->
-            <div class="glassmorphism rounded-2xl mb-6">
-                <div class="flex overflow-x-auto">
+            <!-- NEW: Content Tabs Navigation -->
+            <div class="glassmorphism rounded-t-2xl mb-6">
+                <div id="tab-buttons" class="flex overflow-x-auto">
                     <button class="tab-button active" data-tab="posts">
-                        <i class="fas fa-image mr-2"></i>Posts
+                        <i class="fas fa-th-large mr-2"></i>Posts
                     </button>
-                    <button class="tab-button" data-tab="articles">
-                        <i class="fas fa-newspaper mr-2"></i>Articles
+                    <button class="tab-button" data-tab="blogs">
+                        <i class="fas fa-newspaper mr-2"></i>Blogs
                     </button>
                     <button class="tab-button" data-tab="projects">
                         <i class="fas fa-code-branch mr-2"></i>Projects
                     </button>
-                    <button class="tab-button" data-tab="activity">
-                        <i class="fas fa-chart-line mr-2"></i>Activity
+                    <button class="tab-button" data-tab="leaderboard">
+                        <i class="fas fa-trophy mr-2"></i>Leaderboard
                     </button>
                 </div>
             </div>
             
-            <!-- Tab Content -->
-            <div id="tab-content">
+            <!-- NEW: Tab Content Area -->
+            <div id="tab-content-container">
                 
                 <!-- Posts Tab -->
                 <div id="posts-content" class="tab-content">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Post 1 -->
-                        <div class="post-card glassmorphism rounded-xl overflow-hidden">
-                            <div class="h-48 bg-gradient-to-br from-orange-500 to-red-500 relative">
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <i class="fas fa-code text-4xl text-white opacity-80"></i>
-                                </div>
-                                <div class="absolute top-3 right-3 bg-black/50 px-2 py-1 rounded text-xs">
-                                    <i class="fas fa-heart text-red-500 mr-1"></i>24
-                                </div>
-                            </div>
-                            <div class="p-4">
-                                <h3 class="font-semibold mb-2">My First React Project</h3>
-                                <p class="text-gray-400 text-sm">Built a todo app with React hooks and Context API</p>
-                                <div class="mt-3 flex items-center justify-between">
-                                    <span class="text-xs text-gray-500">2 days ago</span>
-                                    <div class="flex gap-2">
-                                        <button class="text-gray-400 hover:text-red-500">
-                                            <i class="fas fa-heart"></i>
-                                        </button>
-                                        <button class="text-gray-400 hover:text-orange-500">
-                                            <i class="fas fa-comment"></i>
-                                        </button>
-                                        <button class="text-gray-400 hover:text-blue-500">
-                                            <i class="fas fa-share"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Post 2 -->
-                        <div class="post-card glassmorphism rounded-xl overflow-hidden">
-                            <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-500 relative">
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <i class="fas fa-database text-4xl text-white opacity-80"></i>
-                                </div>
-                                <div class="absolute top-3 right-3 bg-black/50 px-2 py-1 rounded text-xs">
-                                    <i class="fas fa-heart text-red-500 mr-1"></i>18
-                                </div>
-                            </div>
-                            <div class="p-4">
-                                <h3 class="font-semibold mb-2">Database Design Patterns</h3>
-                                <p class="text-gray-400 text-sm">Exploring CRUD operations with MongoDB</p>
-                                <div class="mt-3 flex items-center justify-between">
-                                    <span class="text-xs text-gray-500">5 days ago</span>
-                                    <div class="flex gap-2">
-                                        <button class="text-gray-400 hover:text-red-500">
-                                            <i class="fas fa-heart"></i>
-                                        </button>
-                                        <button class="text-gray-400 hover:text-orange-500">
-                                            <i class="fas fa-comment"></i>
-                                        </button>
-                                        <button class="text-gray-400 hover:text-blue-500">
-                                            <i class="fas fa-share"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Post 3 -->
-                        <div class="post-card glassmorphism rounded-xl overflow-hidden">
-                            <div class="h-48 bg-gradient-to-br from-green-500 to-teal-500 relative">
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <i class="fas fa-mobile-alt text-4xl text-white opacity-80"></i>
-                                </div>
-                                <div class="absolute top-3 right-3 bg-black/50 px-2 py-1 rounded text-xs">
-                                    <i class="fas fa-heart text-red-500 mr-1"></i>31
-                                </div>
-                            </div>
-                            <div class="p-4">
-                                <h3 class="font-semibold mb-2">Mobile App UI Design</h3>
-                                <p class="text-gray-400 text-sm">Created responsive design for mobile-first approach</p>
-                                <div class="mt-3 flex items-center justify-between">
-                                    <span class="text-xs text-gray-500">1 week ago</span>
-                                    <div class="flex gap-2">
-                                        <button class="text-gray-400 hover:text-red-500">
-                                            <i class="fas fa-heart"></i>
-                                        </button>
-                                        <button class="text-gray-400 hover:text-orange-500">
-                                            <i class="fas fa-comment"></i>
-                                        </button>
-                                        <button class="text-gray-400 hover:text-blue-500">
-                                            <i class="fas fa-share"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="placeholder-content">
+                        <i class="fas fa-camera-retro icon"></i>
+                        <h3 class="font-rajdhani text-2xl font-bold mb-2">No Posts Yet</h3>
+                        <p class="text-gray-400 max-w-md">When {{ user.first_name|default:"this user" }} shares photos or updates, they'll appear here. Why not share your first post today?</p>
                     </div>
                 </div>
                 
-                <!-- Articles Tab -->
-                <div id="articles-content" class="tab-content hidden">
-                    <div class="space-y-4">
-                        <div class="glassmorphism rounded-xl p-6 post-card">
-                            <div class="flex gap-4">
-                                <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-newspaper text-2xl text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h3 class="font-semibold text-lg mb-2">Understanding React Hooks</h3>
-                                    <p class="text-gray-400 mb-3">A comprehensive guide to useState, useEffect, and custom hooks in React applications...</p>
-                                    <div class="flex items-center gap-4 text-sm text-gray-500">
-                                        <span>Published 3 days ago</span>
-                                        <span>5 min read</span>
-                                        <span><i class="fas fa-eye mr-1"></i>1.2k views</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="glassmorphism rounded-xl p-6 post-card">
-                            <div class="flex gap-4">
-                                <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-server text-2xl text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h3 class="font-semibold text-lg mb-2">Building REST APIs with Node.js</h3>
-                                    <p class="text-gray-400 mb-3">Learn how to create scalable backend services using Express.js and MongoDB...</p>
-                                    <div class="flex items-center gap-4 text-sm text-gray-500">
-                                        <span>Published 1 week ago</span>
-                                        <span>8 min read</span>
-                                        <span><i class="fas fa-eye mr-1"></i>2.1k views</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Blogs Tab -->
+                <div id="blogs-content" class="tab-content hidden">
+                    <div class="placeholder-content">
+                        <i class="fas fa-feather-alt icon"></i>
+                        <h3 class="font-rajdhani text-2xl font-bold mb-2">No Blogs Published</h3>
+                        <p class="text-gray-400 max-w-md">Looks like {{ user.first_name|default:"this user" }} hasn't written any articles yet. Stay tuned for their thoughts and stories!</p>
                     </div>
                 </div>
                 
                 <!-- Projects Tab -->
                 <div id="projects-content" class="tab-content hidden">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="glassmorphism rounded-xl p-6 post-card">
-                            <div class="flex items-start justify-between mb-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-code text-white"></i>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold">E-commerce Platform</h3>
-                                        <p class="text-gray-400 text-sm">Full-stack web application</p>
-                                    </div>
-                                </div>
-                                <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full">Active</span>
-                            </div>
-                            <p class="text-gray-300 text-sm mb-4">Modern e-commerce solution built with React, Node.js, and MongoDB featuring user authentication, payment processing, and admin dashboard.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs">React</span>
-                                <span class="px-2 py-1 bg-green-500/20 text-green-400 rounded text-xs">Node.js</span>
-                                <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded text-xs">MongoDB</span>
-                            </div>
-                            <div class="flex items-center gap-4 text-sm text-gray-500">
-                                <span><i class="fas fa-star text-yellow-400 mr-1"></i>23 stars</span>
-                                <span><i class="fas fa-code-branch mr-1"></i>7 forks</span>
-                                <a href="#" class="text-orange-500 hover:text-orange-400"><i class="fab fa-github mr-1"></i>View Code</a>
-                            </div>
-                        </div>
-                        
-                        <div class="glassmorphism rounded-xl p-6 post-card">
-                            <div class="flex items-start justify-between mb-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-mobile-alt text-white"></i>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold">Weather App</h3>
-                                        <p class="text-gray-400 text-sm">Mobile application</p>
-                                    </div>
-                                </div>
-                                <span class="text-xs bg-gray-500/20 text-gray-400 px-2 py-1 rounded-full">Completed</span>
-                            </div>
-                            <p class="text-gray-300 text-sm mb-4">Cross-platform mobile app providing real-time weather information with location-based forecasts and beautiful UI animations.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded text-xs">React Native</span>
-                                <span class="px-2 py-1 bg-purple-500/20 text-purple-400 rounded text-xs">TypeScript</span>
-                            </div>
-                            <div class="flex items-center gap-4 text-sm text-gray-500">
-                                <span><i class="fas fa-star text-yellow-400 mr-1"></i>15 stars</span>
-                                <span><i class="fas fa-code-branch mr-1"></i>3 forks</span>
-                                <a href="#" class="text-orange-500 hover:text-orange-400"><i class="fab fa-github mr-1"></i>View Code</a>
-                            </div>
-                        </div>
+                    <div class="placeholder-content">
+                        <i class="fas fa-project-diagram icon"></i>
+                        <h3 class="font-rajdhani text-2xl font-bold mb-2">No Projects to Show</h3>
+                        <p class="text-gray-400 max-w-md">When {{ user.first_name|default:"this user" }} showcases their work, you'll find their projects here.</p>
                     </div>
                 </div>
                 
-                <!-- Activity Tab -->
-                <div id="activity-content" class="tab-content hidden">
-                    <div class="glassmorphism rounded-xl p-6">
-                        <div class="flex items-center justify-between mb-6">
-                            <h3 class="font-rajdhani text-xl font-bold">Activity This Month</h3>
-                            <div class="text-sm text-gray-400">
-                                <span class="stats-number font-bold">127</span> contributions in December 2024
-                            </div>
-                        </div>
-                        
-                        <!-- Activity Calendar -->
-                        <div class="activity-calendar mb-6">
-                            <div class="grid grid-cols-7 gap-1 mb-2">
-                                <div class="text-xs text-gray-500 text-center">Sun</div>
-                                <div class="text-xs text-gray-500 text-center">Mon</div>
-                                <div class="text-xs text-gray-500 text-center">Tue</div>
-                                <div class="text-xs text-gray-500 text-center">Wed</div>
-                                <div class="text-xs text-gray-500 text-center">Thu</div>
-                                <div class="text-xs text-gray-500 text-center">Fri</div>
-                                <div class="text-xs text-gray-500 text-center">Sat</div>
-                            </div>
-                            
-                            <div id="activity-grid" class="grid grid-cols-7 gap-1">
-                                <!-- Activity squares will be generated by JavaScript -->
-                            </div>
-                        </div>
-                        
-                        <!-- Activity Legend -->
-                        <div class="flex items-center justify-between text-xs text-gray-500 mb-6">
-                            <span>Less</span>
-                            <div class="flex gap-1">
-                                <div class="activity-day activity-level-0"></div>
-                                <div class="activity-day activity-level-1"></div>
-                                <div class="activity-day activity-level-2"></div>
-                                <div class="activity-day activity-level-3"></div>
-                                <div class="activity-day activity-level-4"></div>
-                            </div>
-                            <span>More</span>
-                        </div>
-                        
-                        <!-- Activity Stats -->
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div class="text-center p-4 bg-gray-800/30 rounded-lg">
-                                <div class="stats-number font-bold text-2xl">127</div>
-                                <div class="text-gray-400 text-sm">Total Contributions</div>
-                            </div>
-                            <div class="text-center p-4 bg-gray-800/30 rounded-lg">
-                                <div class="stats-number font-bold text-2xl">23</div>
-                                <div class="text-gray-400 text-sm">Best Day</div>
-                            </div>
-                            <div class="text-center p-4 bg-gray-800/30 rounded-lg">
-                                <div class="stats-number font-bold text-2xl">15</div>
-                                <div class="text-gray-400 text-sm">Current Streak</div>
-                            </div>
-                            <div class="text-center p-4 bg-gray-800/30 rounded-lg">
-                                <div class="stats-number font-bold text-2xl">28</div>
-                                <div class="text-gray-400 text-sm">Longest Streak</div>
-                            </div>
-                        </div>
+                <!-- Leaderboard Tab -->
+                <div id="leaderboard-content" class="tab-content hidden">
+                    <div class="glassmorphism rounded-2xl p-4 md:p-6">
+                        <h3 class="font-rajdhani text-2xl font-bold mb-4">Community Leaderboard</h3>
+                        <table class="leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Member</th>
+                                    <th class="text-right">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- This will be replaced by a for loop in the future -->
+                                <tr class="user-rank"> <!-- Highlight the current user -->
+                                    <td class="rank">#1</td>
+                                    <td>
+                                        <div class="member-info">
+                                            {% if user.profile and user.profile.profile_pic %}
+                                                <img src="{{ user.profile.profile_pic.url }}" alt="User Pic" class="member-pic">
+                                            {% else %}
+                                                <img src="{% static 'images/default-avatar.png' %}" alt="User Pic" class="member-pic">
+                                            {% endif %}
+                                            <span>{{ user.first_name|default:"User" }} {{ user.last_name|default:"" }} (You)</span>
+                                        </div>
+                                    </td>
+                                    <td class="score">1,520</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">#2</td>
+                                    <td>
+                                        <div class="member-info">
+                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop" alt="User Pic" class="member-pic">
+                                            <span>Jane Doe</span>
+                                        </div>
+                                    </td>
+                                    <td class="score">1,480</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">#3</td>
+                                    <td>
+                                        <div class="member-info">
+                                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&h=80&fit=crop" alt="User Pic" class="member-pic">
+                                            <span>Mike Ross</span>
+                                        </div>
+                                    </td>
+                                    <td class="score">1,350</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">#4</td>
+                                    <td>
+                                        <div class="member-info">
+                                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop" alt="User Pic" class="member-pic">
+                                            <span>Sarah Connor</span>
+                                        </div>
+                                    </td>
+                                    <td class="score">1,210</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -561,408 +205,31 @@
     </div>
 
     <script>
-        // Tab functionality
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                // Hide all tab content
-                document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
-                // Show selected tab content
-                const tabId = button.getAttribute('data-tab') + '-content';
-                document.getElementById(tabId).classList.remove('hidden');
-            });
-        });
-        
-        // Generate activity calendar
-        function generateActivityCalendar() {
-            const grid = document.getElementById('activity-grid');
-            const today = new Date();
-            const currentMonth = today.getMonth();
-            const currentYear = today.getFullYear();
-            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-            const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
-            
-            // Clear existing content
-            grid.innerHTML = '';
-            
-            // Add empty cells for days before month starts
-            for (let i = 0; i < firstDayOfMonth; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'activity-day activity-level-0 opacity-30';
-                grid.appendChild(emptyDay);
-            }
-            
-            // Add days of current month
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayElement = document.createElement('div');
-                const activityLevel = Math.floor(Math.random() * 5); // Random activity level for demo
-                dayElement.className = `activity-day activity-level-${activityLevel}`;
-                dayElement.title = `${day} Dec 2024: ${activityLevel * 2} contributions`;
-                
-                // Add click event for activity details
-                dayElement.addEventListener('click', () => {
-                    showActivityDetails(day, activityLevel * 2);
+        // JavaScript for Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Get the target tab from the data attribute
+                    const targetTab = button.getAttribute('data-tab');
+
+                    // Deactivate all buttons and hide all content
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.add('hidden'));
+
+                    // Activate the clicked button
+                    button.classList.add('active');
+
+                    // Show the target content
+                    const targetContent = document.getElementById(targetTab + '-content');
+                    if (targetContent) {
+                        targetContent.classList.remove('hidden');
+                    }
                 });
-                
-                grid.appendChild(dayElement);
-            }
-            
-            // Fill remaining cells to complete the grid
-            const totalCells = firstDayOfMonth + daysInMonth;
-            const remainingCells = 42 - totalCells; // 6 rows x 7 days = 42 cells
-            for (let i = 0; i < remainingCells; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'activity-day activity-level-0 opacity-30';
-                grid.appendChild(emptyDay);
-            }
-        }
-        
-        // Show activity details
-        function showActivityDetails(day, contributions) {
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
-            modal.innerHTML = `
-                <div class="glassmorphism rounded-xl p-6 m-4 max-w-sm w-full">
-                    <h3 class="font-rajdhani text-xl font-bold mb-4">Activity Details</h3>
-                    <div class="space-y-3">
-                        <div class="flex justify-between">
-                            <span class="text-gray-300">Date:</span>
-                            <span class="text-orange-500 font-semibold">${day} December 2024</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-300">Contributions:</span>
-                            <span class="text-orange-500 font-semibold">${contributions}</span>
-                        </div>
-                        <div class="pt-2 border-t border-gray-700">
-                            <span class="text-gray-400 text-sm">
-                                ${contributions > 0 ? 'Great work! Keep it up!' : 'No activity this day'}
-                            </span>
-                        </div>
-                    </div>
-                    <button onclick="this.parentElement.parentElement.remove()" 
-                            class="mt-4 w-full btn-primary py-2 rounded-lg font-semibold">
-                        Close
-                    </button>
-                </div>
-            `;
-            
-            // Close on background click
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.remove();
-                }
             });
-            
-            document.body.appendChild(modal);
-        }
-        
-        // Initialize activity calendar when activity tab is shown
-        document.querySelector('[data-tab="activity"]').addEventListener('click', () => {
-            setTimeout(generateActivityCalendar, 100);
         });
-        
-        // Post interactions
-        document.addEventListener('click', (e) => {
-            // Handle post card clicks
-            if (e.target.closest('.post-card') && !e.target.closest('button')) {
-                const postCard = e.target.closest('.post-card');
-                const postTitle = postCard.querySelector('h3')?.textContent || 'Post';
-                showPostDetails(postTitle, postCard);
-            }
-            
-            // Handle like button clicks
-            if (e.target.classList.contains('fa-heart') || e.target.closest('.fa-heart')) {
-                e.stopPropagation();
-                const heartIcon = e.target.classList.contains('fa-heart') ? e.target : e.target.closest('.fa-heart');
-                toggleLike(heartIcon);
-            }
-            
-            // Handle comment button clicks
-            if (e.target.classList.contains('fa-comment') || e.target.closest('.fa-comment')) {
-                e.stopPropagation();
-                showComments();
-            }
-            
-            // Handle share button clicks
-            if (e.target.classList.contains('fa-share') || e.target.closest('.fa-share')) {
-                e.stopPropagation();
-                sharePost();
-            }
-        });
-        
-        // Show post details
-        function showPostDetails(title, postCard) {
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
-            modal.innerHTML = `
-                <div class="glassmorphism rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="font-rajdhani text-2xl font-bold">${title}</h3>
-                        <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-white">
-                            <i class="fas fa-times text-xl"></i>
-                        </button>
-                    </div>
-                    <div class="aspect-video bg-gradient-to-br from-orange-500 to-red-500 rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fas fa-code text-6xl text-white opacity-80"></i>
-                    </div>
-                    <div class="space-y-4">
-                        <p class="text-gray-300">
-                            This is a detailed view of the post. In a real application, this would contain the full post content, 
-                            comments, and more interactive features.
-                        </p>
-                        <div class="flex items-center gap-4 pt-4 border-t border-gray-700">
-                            <button class="flex items-center gap-2 text-gray-400 hover:text-red-500">
-                                <i class="fas fa-heart"></i>
-                                <span>24 likes</span>
-                            </button>
-                            <button class="flex items-center gap-2 text-gray-400 hover:text-orange-500">
-                                <i class="fas fa-comment"></i>
-                                <span>8 comments</span>
-                            </button>
-                            <button class="flex items-center gap-2 text-gray-400 hover:text-blue-500">
-                                <i class="fas fa-share"></i>
-                                <span>Share</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            // Close on background click
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.remove();
-                }
-            });
-            
-            document.body.appendChild(modal);
-        }
-        
-        // Toggle like functionality
-        function toggleLike(heartIcon) {
-            const isLiked = heartIcon.classList.contains('text-red-500');
-            
-            if (isLiked) {
-                heartIcon.classList.remove('text-red-500');
-                heartIcon.classList.add('text-gray-400');
-            } else {
-                heartIcon.classList.remove('text-gray-400');
-                heartIcon.classList.add('text-red-500');
-            }
-            
-            // Add animation
-            heartIcon.style.transform = 'scale(1.3)';
-            setTimeout(() => {
-                heartIcon.style.transform = 'scale(1)';
-            }, 200);
-            
-            // Update like count (demo)
-            const likeCount = heartIcon.closest('.post-card').querySelector('.absolute.top-3.right-3 span');
-            if (likeCount) {
-                const currentCount = parseInt(likeCount.textContent);
-                likeCount.textContent = isLiked ? currentCount - 1 : currentCount + 1;
-            }
-        }
-        
-        // Show comments
-        function showComments() {
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
-            modal.innerHTML = `
-                <div class="glassmorphism rounded-xl p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="font-rajdhani text-xl font-bold">Comments</h3>
-                        <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-white">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="space-y-4 mb-6">
-                        <div class="flex gap-3">
-                            <div class="w-8 h-8 bg-orange-500 rounded-full flex-shrink-0"></div>
-                            <div class="flex-1">
-                                <div class="bg-gray-800/50 rounded-lg p-3">
-                                    <div class="font-semibold text-sm mb-1">Sarah Miller</div>
-                                    <div class="text-gray-300 text-sm">Great work! Really inspiring project.</div>
-                                </div>
-                                <div class="text-xs text-gray-500 mt-1">2 hours ago</div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-3">
-                            <div class="w-8 h-8 bg-blue-500 rounded-full flex-shrink-0"></div>
-                            <div class="flex-1">
-                                <div class="bg-gray-800/50 rounded-lg p-3">
-                                    <div class="font-semibold text-sm mb-1">Mike Johnson</div>
-                                    <div class="text-gray-300 text-sm">Would love to collaborate on something similar!</div>
-                                </div>
-                                <div class="text-xs text-gray-500 mt-1">5 hours ago</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex gap-2">
-                        <input type="text" placeholder="Add a comment..." 
-                               class="flex-1 px-3 py-2 bg-gray-800/70 border border-gray-600 rounded-lg text-white placeholder-gray-400 text-sm">
-                        <button class="btn-primary px-4 py-2 rounded-lg font-semibold text-sm">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            // Close on background click
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.remove();
-                }
-            });
-            
-            document.body.appendChild(modal);
-        }
-        
-        // Share post functionality
-        function sharePost() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Check out this post',
-                    text: 'Amazing content from Rise Together community',
-                    url: window.location.href
-                }).catch(err => console.log('Error sharing:', err));
-            } else {
-                // Fallback for browsers that don't support Web Share API
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    showToast('Link copied to clipboard!');
-                }).catch(err => {
-                    console.log('Error copying to clipboard:', err);
-                    showToast('Unable to copy link');
-                });
-            }
-        }
-        
-        // Show toast notification
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 glassmorphism px-4 py-2 rounded-lg z-50';
-            toast.textContent = message;
-            
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => toast.remove(), 300);
-            }, 2000);
-        }
-        
-        // Edit Profile button
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.btn-primary') && e.target.closest('.btn-primary').textContent.includes('Edit Profile')) {
-                showEditProfile();
-            }
-            
-            if (e.target.closest('.btn-secondary') && e.target.closest('.btn-secondary').textContent.includes('Share')) {
-                shareProfile();
-            }
-        });
-        
-        // Show edit profile modal
-        function showEditProfile() {
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
-            modal.innerHTML = `
-                <div class="glassmorphism rounded-xl p-6 max-w-md w-full">
-                    <h3 class="font-rajdhani text-2xl font-bold mb-6">Edit Profile</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium mb-2 text-gray-300">Display Name</label>
-                            <input type="text" value="Rahul Sharma" 
-                                   class="w-full px-3 py-2 bg-gray-800/70 border border-gray-600 rounded-lg text-white">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2 text-gray-300">Bio</label>
-                            <textarea rows="3" 
-                                      class="w-full px-3 py-2 bg-gray-800/70 border border-gray-600 rounded-lg text-white resize-none">Full Stack Developer | AI Enthusiast | Community Builder
-Turning ideas into reality, one line of code at a time.</textarea>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2 text-gray-300">Website</label>
-                            <input type="url" value="https://portfolio.dev" 
-                                   class="w-full px-3 py-2 bg-gray-800/70 border border-gray-600 rounded-lg text-white">
-                        </div>
-                    </div>
-                    <div class="flex gap-3 mt-6">
-                        <button onclick="this.closest('.fixed').remove()" 
-                                class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-white">
-                            Cancel
-                        </button>
-                        <button onclick="saveProfile()" 
-                                class="flex-1 btn-primary py-2 rounded-lg font-semibold">
-                            Save Changes
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            // Close on background click
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.remove();
-                }
-            });
-            
-            document.body.appendChild(modal);
-        }
-        
-        // Save profile changes
-        function saveProfile() {
-            showToast('Profile updated successfully!');
-            document.querySelector('.fixed').remove();
-        }
-        
-        // Share profile functionality
-        function shareProfile() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Rahul Sharma - Rise Together',
-                    text: 'Check out my profile on Rise Together',
-                    url: window.location.href
-                }).catch(err => console.log('Error sharing:', err));
-            } else {
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    showToast('Profile link copied to clipboard!');
-                }).catch(err => {
-                    console.log('Error copying to clipboard:', err);
-                    showToast('Unable to copy link');
-                });
-            }
-        }
-        
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add loading animation to post cards
-            document.querySelectorAll('.post-card').forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'all 0.5s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
-            
-            // Generate initial activity calendar
-            generateActivityCalendar();
-        });
-        
-        // Handle window resize for responsive behavior
-        window.addEventListener('resize', () => {
-            // Re-generate activity calendar on resize to ensure proper layout
-            if (!document.getElementById('activity-content').classList.contains('hidden')) {
-                setTimeout(generateActivityCalendar, 100);
-            }
-        });
+    </script>
+</body>
+</html>

@@ -264,8 +264,8 @@ body {
 }
 
 .deputy-lead-special {
-    background: linear-gradient(135deg, rgba(75, 85, 99, 0.2) 0%, rgba(55, 65, 81, 0.1) 100%);
-    border: 2px solid rgba(156, 163, 175, 0.3);
+    background: linear-gradient(135deg, rgba(255, 237, 138, 0.498) 0%, rgba(236, 169, 76, 0.544) 100%);
+    border: 2px solid rgba(241, 149, 30, 0.3);
     position: relative;
     overflow: hidden;
 }
