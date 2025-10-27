@@ -1,0 +1,127 @@
+/* General Form Field Styling */
+.form-field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: rgba(31, 41, 55, 0.7); /* bg-gray-800 with transparency */
+    border: 1px solid #4b5563; /* border-gray-600 */
+    border-radius: 0.5rem; /* rounded-lg */
+    color: #e5e7eb; /* text-white */
+    transition: all 0.3s ease;
+}
+
+.form-field::placeholder {
+    color: #9ca3af; /* placeholder-gray-400 */
+}
+
+.form-field:focus {
+    outline: none;
+    border-color: #f97316; /* focus:border-orange-500 */
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2); /* focus:ring */
+}
+
+/* Form Label Styling */
+.form-label {
+    display: block;
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    margin-bottom: 0.5rem;
+    color: #d1d5db; /* text-gray-300 */
+}
+
+/* --- Custom File Input Styling --- */
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Hide the default file input */
+.file-input-wrapper input[type="file"] {
+    display: none;
+}
+
+/* Style the custom label to look like a button */
+.file-input-label {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    background-color: rgba(75, 85, 99, 0.5); /* btn-secondary like */
+    border: 1px solid #4b5563;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.file-input-label:hover {
+    background-color: rgba(75, 85, 99, 0.7);
+    border-color: #f97316;
+}
+
+/* Style for displaying the chosen file's name */
+.file-name-display {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* --- Formset (Social Links) Styling --- */
+.link-formset-row {
+    display: flex;
+    flex-direction: column;
+    /* On medium screens and up, flex-direction is set in the media query below */
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    border: 1px solid rgba(75, 85, 99, 0.3);
+    border-radius: 0.5rem;
+}
+
+.link-formset-row > div {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .link-formset-row {
+        flex-direction: row;
+    }
+}
+
+.link-formset-row .form-field {
+    width: 100%;
+}
+
+/* Style for the 'Delete' checkbox and label */
+.delete-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap; /* Prevents "Delete" from wrapping */
+}
+
+.delete-checkbox-wrapper label {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    cursor: pointer;
+}
+
+.delete-checkbox-wrapper input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    accent-color: #f97316; /* Colors the checkbox with our theme color */
+}
+
+/* Danger Zone Button */
+.btn-danger {
+    background-color: rgba(220, 38, 38, 0.2); /* bg-red-800/20 */
+    border: 1px solid rgba(220, 38, 38, 0.5); /* border-red-600 */
+    color: #f87171; /* text-red-400 */
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: rgba(220, 38, 38, 0.4);
+    color: #fff;
+}

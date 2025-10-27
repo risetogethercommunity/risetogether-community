@@ -1,0 +1,235 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.first_name }}'s Profile - Rise Together</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Background -->
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
+    
+    <!-- Main Container -->
+    <div class="relative z-10 min-h-screen py-8">
+        <div class="max-w-4xl mx-auto px-4">
+
+            <!-- Display Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="glassmorphism text-center p-3 rounded-lg mb-4 {% if message.tags == 'error' %}bg-red-500/20 text-red-400{% else %}bg-green-500/20 text-green-400{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            <!-- Profile Header -->
+            <div class="glassmorphism rounded-2xl p-6 mb-6 glow-orange">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                    <div class="flex-shrink-0">
+                        {% if user.profile and user.profile.profile_pic %}
+                            <img src="{{ user.profile.profile_pic.url }}" alt="Profile Picture" class="profile-pic object-cover">
+                        {% else %}
+                            <img src="{% static 'images/default-avatar.png' %}" alt="Profile Picture" class="profile-pic object-cover">
+                        {% endif %}
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <div class="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+                            <h1 class="font-rajdhani text-3xl font-bold">{{ user.first_name|default:"User" }} {{ user.last_name|default:"" }}</h1>
+                            <div class="flex gap-3 justify-center md:justify-start">
+                                <a href="{% url 'accounts:edit_profile' %}" class="btn-primary px-4 py-2 rounded-lg font-semibold text-sm">
+                                    <i class="fas fa-edit mr-2"></i>Edit Profile
+                                </a>
+                                <button class="btn-secondary px-4 py-2 rounded-lg font-semibold text-sm text-white">
+                                    <i class="fas fa-share mr-2"></i>Share
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- ***** UPDATED STATS SECTION ***** -->
+                        <div class="flex gap-8 mb-4 justify-center md:justify-start">
+                            <div class="text-center">
+                                <div class="font-bold text-xl stats-number">{{ user.profile.posts_shared_count|default:0 }}</div>
+                                <div class="text-gray-400 text-sm">Posts</div>
+                            </div>
+                             <div class="text-center">
+                                <!-- This calls the new @property -->
+                                <div class="font-bold text-xl stats-number">{% if user.profile.blogs_count %}{{ user.profile.blogs_count }}{% else %}0{% endif %}</div>
+                                <div class="text-gray-400 text-sm">Blogs</div>
+                            </div>
+                            <div class="text-center">
+                                <!-- This calls the new @property -->
+                                <div class="font-bold text-xl stats-number">{% if user.profile.projects_count %}{{ user.profile.projects_count }}{% else %}0{% endif %}</div>
+                                <div class="text-gray-400 text-sm">Projects</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <p class="text-gray-300 mb-2">{{ user.profile.bio|default:"No bio available"|linebreaksbr }}</p>
+                        </div>
+                        <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                            {% if user.profile %}
+                                {% for link in user.profile.links.all %}
+                                <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="text-orange-500 hover:text-orange-400 transition-colors">
+                                    <i class="fas fa-link mr-1"></i>{{ link.title }}
+                                </a>
+                                {% empty %}
+                                    <p class="text-sm text-gray-500">No social links added yet. Click 'Edit Profile' to add them!</p>
+                                {% endfor %}
+                            {% else %}
+                                <p class="text-sm text-gray-500">No social links added yet. Click 'Edit Profile' to add them!</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NEW: Content Tabs Navigation -->
+            <div class="glassmorphism rounded-t-2xl mb-6">
+                <div id="tab-buttons" class="flex overflow-x-auto">
+                    <button class="tab-button active" data-tab="posts">
+                        <i class="fas fa-th-large mr-2"></i>Posts
+                    </button>
+                    <button class="tab-button" data-tab="blogs">
+                        <i class="fas fa-newspaper mr-2"></i>Blogs
+                    </button>
+                    <button class="tab-button" data-tab="projects">
+                        <i class="fas fa-code-branch mr-2"></i>Projects
+                    </button>
+                    <button class="tab-button" data-tab="leaderboard">
+                        <i class="fas fa-trophy mr-2"></i>Leaderboard
+                    </button>
+                </div>
+            </div>
+            
+            <!-- NEW: Tab Content Area -->
+            <div id="tab-content-container">
+                
+                <!-- Posts Tab -->
+                <div id="posts-content" class="tab-content">
+                    <div class="placeholder-content">
+                        <i class="fas fa-camera-retro icon"></i>
+                        <h3 class="font-rajdhani text-2xl font-bold mb-2">No Posts Yet</h3>
+                        <p class="text-gray-400 max-w-md">When {{ user.first_name|default:"this user" }} shares photos or updates, they'll appear here. Why not share your first post today?</p>
+                    </div>
+                </div>
+                
+                <!-- Blogs Tab -->
+                <div id="blogs-content" class="tab-content hidden">
+                    <div class="placeholder-content">
+                        <i class="fas fa-feather-alt icon"></i>
+                        <h3 class="font-rajdhani text-2xl font-bold mb-2">No Blogs Published</h3>
+                        <p class="text-gray-400 max-w-md">Looks like {{ user.first_name|default:"this user" }} hasn't written any articles yet. Stay tuned for their thoughts and stories!</p>
+                    </div>
+                </div>
+                
+                <!-- Projects Tab -->
+                <div id="projects-content" class="tab-content hidden">
+                    <div class="placeholder-content">
+                        <i class="fas fa-project-diagram icon"></i>
+                        <h3 class="font-rajdhani text-2xl font-bold mb-2">No Projects to Show</h3>
+                        <p class="text-gray-400 max-w-md">When {{ user.first_name|default:"this user" }} showcases their work, you'll find their projects here.</p>
+                    </div>
+                </div>
+                
+                <!-- Leaderboard Tab -->
+                <div id="leaderboard-content" class="tab-content hidden">
+                    <div class="glassmorphism rounded-2xl p-4 md:p-6">
+                        <h3 class="font-rajdhani text-2xl font-bold mb-4">Community Leaderboard</h3>
+                        <table class="leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Member</th>
+                                    <th class="text-right">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- This will be replaced by a for loop in the future -->
+                                <tr class="user-rank"> <!-- Highlight the current user -->
+                                    <td class="rank">#1</td>
+                                    <td>
+                                        <div class="member-info">
+                                            {% if user.profile and user.profile.profile_pic %}
+                                                <img src="{{ user.profile.profile_pic.url }}" alt="User Pic" class="member-pic">
+                                            {% else %}
+                                                <img src="{% static 'images/default-avatar.png' %}" alt="User Pic" class="member-pic">
+                                            {% endif %}
+                                            <span>{{ user.first_name|default:"User" }} {{ user.last_name|default:"" }} (You)</span>
+                                        </div>
+                                    </td>
+                                    <td class="score">1,520</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">#2</td>
+                                    <td>
+                                        <div class="member-info">
+                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop" alt="User Pic" class="member-pic">
+                                            <span>Jane Doe</span>
+                                        </div>
+                                    </td>
+                                    <td class="score">1,480</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">#3</td>
+                                    <td>
+                                        <div class="member-info">
+                                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&h=80&fit=crop" alt="User Pic" class="member-pic">
+                                            <span>Mike Ross</span>
+                                        </div>
+                                    </td>
+                                    <td class="score">1,350</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">#4</td>
+                                    <td>
+                                        <div class="member-info">
+                                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop" alt="User Pic" class="member-pic">
+                                            <span>Sarah Connor</span>
+                                        </div>
+                                    </td>
+                                    <td class="score">1,210</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Get the target tab from the data attribute
+                    const targetTab = button.getAttribute('data-tab');
+
+                    // Deactivate all buttons and hide all content
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.add('hidden'));
+
+                    // Activate the clicked button
+                    button.classList.add('active');
+
+                    // Show the target content
+                    const targetContent = document.getElementById(targetTab + '-content');
+                    if (targetContent) {
+                        targetContent.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
