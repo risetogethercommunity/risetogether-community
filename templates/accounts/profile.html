@@ -52,13 +52,17 @@
                                 <button class="btn-secondary px-4 py-2 rounded-lg font-semibold text-sm text-white">
                                     <i class="fas fa-share mr-2"></i>Share
                                 </button>
+                                <!-- Settings Button -->
+                                <a href="{% url 'accounts:settings' %}" class="btn-secondary px-4 py-2 rounded-lg font-semibold text-sm text-white">
+                                    <i class="fas fa-cog"></i>
+                                </a>
                             </div>
                         </div>
                         
                         <!-- ***** UPDATED STATS SECTION ***** -->
                         <div class="flex gap-8 mb-4 justify-center md:justify-start">
                             <div class="text-center">
-                                <div class="font-bold text-xl stats-number">{{ user.profile.posts_shared_count|default:0 }}</div>
+                                <div class="font-bold text-xl stats-number">{{ posts_count|default:0 }}</div>
                                 <div class="text-gray-400 text-sm">Posts</div>
                             </div>
                              <div class="text-center">
@@ -116,11 +120,39 @@
                 
                 <!-- Posts Tab -->
                 <div id="posts-content" class="tab-content">
-                    <div class="placeholder-content">
-                        <i class="fas fa-camera-retro icon"></i>
-                        <h3 class="font-rajdhani text-2xl font-bold mb-2">No Posts Yet</h3>
-                        <p class="text-gray-400 max-w-md">When {{ user.first_name|default:"this user" }} shares photos or updates, they'll appear here. Why not share your first post today?</p>
-                    </div>
+                    {% if user_posts %}
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {% for post in user_posts %}
+                            <a href="{% url 'feed:post_detail' post.id %}" class="group glassmorphism rounded-xl overflow-hidden hover:scale-105 transition-transform">
+                                {% if post.image %}
+                                    <div class="aspect-square overflow-hidden">
+                                        <img src="{{ post.image.url }}" alt="Post" class="w-full h-full object-cover">
+                                    </div>
+                                {% elif post.video %}
+                                    <div class="aspect-square overflow-hidden bg-gray-800 flex items-center justify-center">
+                                        <i class="fas fa-play-circle text-6xl text-white/50"></i>
+                                    </div>
+                                {% else %}
+                                    <div class="aspect-square p-6 flex items-center justify-center bg-gradient-to-br from-purple-500/20 to-pink-500/20">
+                                        <p class="text-white text-center line-clamp-6">{{ post.content|truncatewords:30 }}</p>
+                                    </div>
+                                {% endif %}
+                                <div class="p-3">
+                                    <div class="flex gap-3 text-gray-400 text-sm">
+                                        <span><i class="fas fa-heart mr-1"></i>{{ post.likes.count }}</span>
+                                        <span><i class="fas fa-comment mr-1"></i>{{ post.comments.count }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="placeholder-content">
+                            <i class="fas fa-camera-retro icon"></i>
+                            <h3 class="font-rajdhani text-2xl font-bold mb-2">No Posts Yet</h3>
+                            <p class="text-gray-400 max-w-md">When {{ user.first_name|default:"this user" }} shares photos or updates, they'll appear here. Why not share your first post today?</p>
+                        </div>
+                    {% endif %}
                 </div>
                 
                 <!-- Blogs Tab -->

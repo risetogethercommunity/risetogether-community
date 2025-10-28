@@ -274,6 +274,17 @@
             }
         });
 
+        // Auto-open modal if ?create=true is in URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('create') === 'true') {
+                openCreatePostModal();
+                // Remove the parameter from URL without reloading
+                const newUrl = window.location.pathname;
+                window.history.replaceState({}, document.title, newUrl);
+            }
+        });
+
         // Update form fields based on post type
         document.getElementById('id_post_type').addEventListener('change', updatePostTypeFields);
 

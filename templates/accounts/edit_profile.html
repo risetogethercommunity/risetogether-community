@@ -57,14 +57,65 @@
                         <h3 class="font-rajdhani text-xl font-semibold mb-4 text-orange-400">Profile Details</h3>
                         <div class="space-y-6">
                             <div>
-                                <label class="form-label">Profile Picture</label>
-                                <div class="file-input-wrapper">
-                                    <img src="{{ user.profile.profile_pic.url }}" alt="Current Profile Picture" class="w-20 h-20 rounded-full object-cover">
-                                    <label for="{{ profile_form.profile_pic.id_for_label }}" class="file-input-label">
-                                        <i class="fas fa-upload mr-2"></i>Choose File
-                                    </label>
-                                    <span id="file-name-display" class="file-name-display">No file chosen</span>
-                                    {{ profile_form.profile_pic }}
+                                <label class="form-label mb-3 block">Profile Picture</label>
+                                
+                                <!-- Profile Picture Upload Area -->
+                                <div class="flex items-center gap-6">
+                                    <!-- Image Preview Container -->
+                                    <div class="relative group">
+                                        <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-orange-500/50 group-hover:border-orange-500 transition-all">
+                                            {% if user.profile.profile_pic %}
+                                                <img id="profilePreview" src="{{ user.profile.profile_pic.url }}" alt="Profile Picture" class="w-full h-full object-cover">
+                                            {% else %}
+                                                <div id="profilePreview" class="w-full h-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-4xl font-bold">
+                                                    {{ user.username|slice:":1"|upper }}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        
+                                        <!-- Hover Overlay -->
+                                        <div class="absolute inset-0 bg-black/60 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" onclick="document.getElementById('{{ profile_form.profile_pic.id_for_label }}').click()">
+                                            <div class="text-center">
+                                                <i class="fas fa-camera text-white text-2xl mb-1"></i>
+                                                <p class="text-white text-xs">Change Photo</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Upload Controls -->
+                                    <div class="flex-1 space-y-3">
+                                        <!-- Hidden File Input -->
+                                        <input type="file" 
+                                               id="{{ profile_form.profile_pic.id_for_label }}" 
+                                               name="{{ profile_form.profile_pic.name }}"
+                                               accept="image/*"
+                                               class="hidden"
+                                               onchange="previewImage(event)">
+                                        
+                                        <!-- Upload Button -->
+                                        <button type="button" 
+                                                class="btn-primary px-6 py-2 rounded-lg font-semibold flex items-center gap-2"
+                                                onclick="document.getElementById('{{ profile_form.profile_pic.id_for_label }}').click()">
+                                            <i class="fas fa-upload"></i>
+                                            <span>Choose New Photo</span>
+                                        </button>
+                                        
+                                        <!-- Remove Button -->
+                                        {% if user.profile.profile_pic %}
+                                        <button type="button" 
+                                                class="btn-secondary px-6 py-2 rounded-lg font-semibold flex items-center gap-2 text-red-500 hover:bg-red-500/10"
+                                                onclick="removeProfilePicture()">
+                                            <i class="fas fa-trash"></i>
+                                            <span>Remove Photo</span>
+                                        </button>
+                                        {% endif %}
+                                        
+                                        <!-- File Name Display -->
+                                        <p id="fileNameDisplay" class="text-sm text-gray-400 italic"></p>
+                                        
+                                        <!-- Help Text -->
+                                        <p class="text-xs text-gray-500">Recommended: Square image, at least 400x400px, max 5MB</p>
+                                    </div>
                                 </div>
                             </div>
                              <div>
@@ -120,18 +171,63 @@
     </div>
 
     <script>
-        // JavaScript to display the name of the selected file
-        const fileInput = document.getElementById('{{ profile_form.profile_pic.id_for_label }}');
-        const fileNameDisplay = document.getElementById('file-name-display');
-
-        if (fileInput) {
-            fileInput.addEventListener('change', function() {
-                if (this.files && this.files.length > 0) {
-                    fileNameDisplay.textContent = this.files[0].name;
-                } else {
-                    fileNameDisplay.textContent = 'No file chosen';
+        // Preview selected image
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('profilePreview');
+            const fileNameDisplay = document.getElementById('fileNameDisplay');
+            
+            if (file) {
+                // Check file size (5MB max)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('File size must be less than 5MB');
+                    event.target.value = '';
+                    return;
                 }
-            });
+                
+                // Check file type
+                if (!file.type.startsWith('image/')) {
+                    alert('Please select an image file');
+                    event.target.value = '';
+                    return;
+                }
+                
+                // Show file name
+                fileNameDisplay.textContent = `Selected: ${file.name}`;
+                fileNameDisplay.classList.add('text-green-400');
+                
+                // Preview image
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Replace the preview content with the new image
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="w-full h-full object-cover">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // Remove profile picture
+        function removeProfilePicture() {
+            if (confirm('Are you sure you want to remove your profile picture?')) {
+                const preview = document.getElementById('profilePreview');
+                const fileInput = document.getElementById('{{ profile_form.profile_pic.id_for_label }}');
+                const fileNameDisplay = document.getElementById('fileNameDisplay');
+                
+                // Reset to default avatar
+                preview.innerHTML = `
+                    <div class="w-full h-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-4xl font-bold">
+                        {{ user.username|slice:":1"|upper }}
+                    </div>
+                `;
+                
+                // Clear file input
+                fileInput.value = '';
+                fileNameDisplay.textContent = 'Profile picture will be removed on save';
+                fileNameDisplay.classList.add('text-red-400');
+                
+                // You might want to add a hidden field to signal deletion to the backend
+                // For now, just clearing the input will prevent upload of new image
+            }
         }
     </script>
 

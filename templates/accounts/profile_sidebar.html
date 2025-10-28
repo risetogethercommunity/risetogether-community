@@ -2,17 +2,17 @@
 
 <!-- Desktop Sidebar -->
 <aside id="profile-sidebar" class="hidden lg:block fixed left-0 top-0 h-screen w-64 bg-gray-900/95 backdrop-blur-lg border-r border-gray-800 z-40">
-    <div class="flex flex-col h-full p-6">
+    <div class="flex flex-col h-full">
         <!-- Logo -->
-        <div class="mb-8">
+        <div class="p-6 border-b border-gray-800">
             <a href="{% url 'home' %}" class="flex items-center gap-3">
                 <img src="{% static 'images/logo.png' %}" alt="Rise Together" class="w-10 h-10 rounded-lg">
                 <span class="font-rajdhani text-xl font-bold text-orange-500">Rise Together</span>
             </a>
         </div>
 
-        <!-- Navigation Menu -->
-        <nav class="flex-1 space-y-2">
+        <!-- Navigation Menu with Scrollbar -->
+        <nav class="flex-1 overflow-y-auto p-6 space-y-2 custom-scrollbar">
             <!-- Home -->
             <a href="{% url 'home' %}" class="sidebar-link group">
                 <i class="fas fa-home text-xl w-6"></i>
@@ -64,30 +64,18 @@
             </a>
 
             <!-- Create Post -->
-            <a href="#" class="sidebar-link group">
+            <a href="{% url 'feed:feed_list' %}?create=true" class="sidebar-link group">
                 <i class="fas fa-plus-square text-xl w-6"></i>
                 <span>Create Post</span>
             </a>
+        </nav>
 
-            <!-- Profile (Active) -->
+        <!-- Bottom Menu (Fixed at bottom) -->
+        <div class="border-t border-gray-800 p-6 space-y-2 bg-gray-900/95">
+            <!-- Profile (Fixed at bottom) -->
             <a href="{% url 'accounts:profile' %}" class="sidebar-link group {% if request.resolver_match.url_name == 'profile' %}active{% endif %}">
                 <i class="fas fa-user text-xl w-6"></i>
                 <span>Profile</span>
-            </a>
-        </nav>
-
-        <!-- Bottom Menu -->
-        <div class="border-t border-gray-800 pt-4 space-y-2">
-            <!-- Settings -->
-            <a href="{% url 'accounts:edit_profile' %}" class="sidebar-link group {% if request.resolver_match.url_name == 'edit_profile' %}active{% endif %}">
-                <i class="fas fa-cog text-xl w-6"></i>
-                <span>Settings</span>
-            </a>
-
-            <!-- Logout -->
-            <a href="{% url 'accounts:logout' %}" class="sidebar-link group text-red-400 hover:text-red-300">
-                <i class="fas fa-sign-out-alt text-xl w-6"></i>
-                <span>Logout</span>
             </a>
         </div>
     </div>
@@ -109,7 +97,7 @@
         </a>
 
         <!-- Create -->
-        <a href="#" class="mobile-nav-link" onclick="openCreatePostModal(); return false;">
+        <a href="{% url 'feed:feed_list' %}?create=true" class="mobile-nav-link">
             <div class="bg-orange-500 rounded-full p-3 -mt-6 shadow-lg">
                 <i class="fas fa-plus text-white text-xl"></i>
             </div>
@@ -138,6 +126,29 @@
 </nav>
 
 <style>
+    /* Custom Scrollbar for Navigation */
+    .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(249, 115, 22, 0.5) transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(249, 115, 22, 0.5);
+        border-radius: 3px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgba(249, 115, 22, 0.7);
+    }
+
     /* Sidebar Styles */
     .sidebar-link {
         display: flex;
