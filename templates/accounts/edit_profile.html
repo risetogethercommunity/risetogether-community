@@ -1,139 +1,217 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile - Rise Together</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Link to the NEW dedicated CSS file -->
-    <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
-    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
-</head>
-<body class="bg-black text-white min-h-screen">
-    <!-- Background Image -->
-    <div class="background-image"></div>
-    <div class="background-overlay"></div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edit Profile - Rise Together</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
 
-    <!-- Include Sidebar -->
-    {% include 'accounts/profile_sidebar.html' %}
+        <!-- Link to the NEW dedicated CSS file -->
+        <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/auth.css' %}" />
+    </head>
+    <body class="bg-black text-white min-h-screen">
+        <!-- Background Image -->
+        <div class="background-image"></div>
+        <div class="background-overlay"></div>
 
-    <!-- Main Container -->
-    <div class="flex min-h-screen items-center justify-center p-4 profile-content">
-        <div class="relative z-10 w-full max-w-3xl my-8">
-            <div class="glassmorphism rounded-2xl p-6 md:p-8 glow-orange-strong">
-                <div class="text-center mb-8">
-                    <h2 class="font-rajdhani text-3xl font-bold mb-2">Edit Your Profile</h2>
-                    <p class="text-gray-300">Keep your community profile fresh and up-to-date.</p>
-                </div>
-
-                <form method="POST" enctype="multipart/form-data" class="space-y-6">
-                    {% csrf_token %}
-
-                    <!-- Section 1: Basic Information -->
-                    <div class="p-4 border border-gray-700 rounded-lg">
-                        <h3 class="font-rajdhani text-xl font-semibold mb-4 text-orange-400">Basic Info</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="{{ user_form.first_name.id_for_label }}" class="form-label">First Name</label>
-                                {{ user_form.first_name }}
-                            </div>
-                            <div>
-                                <label for="{{ user_form.last_name.id_for_label }}" class="form-label">Last Name</label>
-                                {{ user_form.last_name }}
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <label for="{{ user_form.email.id_for_label }}" class="form-label">Email Address</label>
-                            {{ user_form.email }}
-                        </div>
+        <!-- Main Container -->
+        <div class="flex min-h-screen items-center justify-center p-4">
+            <div class="relative z-10 w-full max-w-3xl my-8">
+                <div
+                    class="glassmorphism rounded-2xl p-6 md:p-8 glow-orange-strong"
+                >
+                    <div class="text-center mb-8">
+                        <h2 class="font-rajdhani text-3xl font-bold mb-2">
+                            Edit Your Profile
+                        </h2>
+                        <p class="text-gray-300">
+                            Keep your community profile fresh and up-to-date.
+                        </p>
                     </div>
 
-                    <!-- Section 2: Profile Details -->
-                    <div class="p-4 border border-gray-700 rounded-lg">
-                        <h3 class="font-rajdhani text-xl font-semibold mb-4 text-orange-400">Profile Details</h3>
-                        <div class="space-y-6">
-                            <div>
-                                <label class="form-label">Profile Picture</label>
-                                <div class="file-input-wrapper">
-                                    <img src="{{ user.profile.profile_pic.url }}" alt="Current Profile Picture" class="w-20 h-20 rounded-full object-cover">
-                                    <label for="{{ profile_form.profile_pic.id_for_label }}" class="file-input-label">
-                                        <i class="fas fa-upload mr-2"></i>Choose File
-                                    </label>
-                                    <span id="file-name-display" class="file-name-display">No file chosen</span>
-                                    {{ profile_form.profile_pic }}
+                    <form
+                        method="POST"
+                        enctype="multipart/form-data"
+                        class="space-y-6"
+                    >
+                        {% csrf_token %}
+
+                        <!-- Section 1: Basic Information -->
+                        <div class="p-4 border border-gray-700 rounded-lg">
+                            <h3
+                                class="font-rajdhani text-xl font-semibold mb-4 text-orange-400"
+                            >
+                                Basic Info
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label
+                                        for="{{ user_form.first_name.id_for_label }}"
+                                        class="form-label"
+                                        >First Name</label
+                                    >
+                                    {{ user_form.first_name }}
+                                </div>
+                                <div>
+                                    <label
+                                        for="{{ user_form.last_name.id_for_label }}"
+                                        class="form-label"
+                                        >Last Name</label
+                                    >
+                                    {{ user_form.last_name }}
                                 </div>
                             </div>
-                             <div>
-                                <label for="{{ profile_form.bio.id_for_label }}" class="form-label">Bio</label>
-                                {{ profile_form.bio }}
+                            <div class="mt-6">
+                                <label
+                                    for="{{ user_form.email.id_for_label }}"
+                                    class="form-label"
+                                    >Email Address</label
+                                >
+                                {{ user_form.email }}
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Section 3: Social Links -->
-                    <div class="p-4 border border-gray-700 rounded-lg">
-                        <h3 class="font-rajdhani text-xl font-semibold mb-4 text-orange-400">Social Links</h3>
-                        {{ link_formset.management_form }}
-                        <div class="space-y-4">
-                            {% for form in link_formset %}
-                            <div class="link-formset-row">
-                                <div class="w-full">{{ form.title }}</div>
-                                <div class="w-full">{{ form.url }}</div>
-                                {% if form.instance.id %}
-                                <div class="delete-checkbox-wrapper">
-                                    <label for="{{ form.DELETE.id_for_label }}">Delete</label>
-                                    {{ form.DELETE }}
-                                </div>
-                                {% endif %}
+                        <!-- Section 2: Profile Details -->
+                        <div class="p-4 border border-gray-700 rounded-lg">
+                            <h3
+                                class="font-rajdhani text-xl font-semibold mb-4 text-orange-400"
+                            >
+                                Profile Details
+                            </h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <!-- Replaced label for with span for better experience -->
+                                    <span class="form-label"
+                                        >Profile Picture</span
+                                    >
+                                    <div class="file-input-wrapper flex flex-col md:flex-row justify-between items-center md:items-end gap-6">
+                                        <!-- Here wrapped left gave TailWind styles-->
+                                        <div class="left flex flex-col gap-4">
+                                            <img
+                                                src="{{ user.profile.profile_pic.url }}"
+                                                alt="Current Profile Picture"
+                                                class="w-20 h-20 rounded-full object-cover"
+                                            />
+                                            <label
+                                                for="{{ profile_form.profile_pic.id_for_label }}"
+                                                class="file-input-label"
+                                            >
+                                                <i
+                                                    class="fas fa-upload mr-2"
+                                                ></i
+                                                >Choose File
+                                            </label>
+                                        </div>
+        
+                                        <div class="right flex flex-col gap-2 justify-center text-sm text-gray-300">
+                                            <div class="filename flex flex-wrap items-center gap-1">
+                                                <span class="opacity-80">Currently:</span>
+                                                <span class="file-path truncate text-gray-400">
+                                                    {{ user.profile.profile_pic.name }}
+                                                </span>
+                                            </div>
+
+                                            <label class="clear flex items-center gap-2">
+                                                <input type="checkbox" name="clear_profile" class="accent-orange-500 cursor-pointer">
+                                                <span>Clear</span>
+                                            </label>
+
+                                            <button type="button" class="change-btn bg-orange-500/20 border border-orange-500 px-3 py-1 rounded-md hover:bg-orange-500/40 transition">
+                                                Change
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>                    
                             </div>
-                            {% endfor %}
                         </div>
-                    </div>
-                    
-                    <!-- Buttons -->
-                    <div class="flex flex-col md:flex-row gap-4 pt-4">
-                        <button type="submit" class="w-full btn-primary py-3 rounded-lg font-semibold glow-orange">
-                            <i class="fas fa-save mr-2"></i>Save Changes
-                        </button>
-                        <a href="{% url 'accounts:profile' %}" class="w-full text-center btn-secondary py-3 rounded-lg font-semibold">
-                            Cancel
+
+                        <!-- Section 3: Social Links -->
+                        <div class="p-4 border border-gray-700 rounded-lg">
+                            <h3
+                                class="font-rajdhani text-xl font-semibold mb-4 text-orange-400"
+                            >
+                                Social Links
+                            </h3>
+                            {{ link_formset.management_form }}
+                            <div class="space-y-4">
+                                {% for form in link_formset %}
+                                <div class="link-formset-row">
+                                    <div class="w-full">{{ form.title }}</div>
+                                    <div class="w-full">{{ form.url }}</div>
+                                    {% if form.instance.id %}
+                                    <div class="delete-checkbox-wrapper">
+                                        <label
+                                            for="{{ form.DELETE.id_for_label }}"
+                                            >Delete</label
+                                        >
+                                        {{ form.DELETE }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="flex flex-col md:flex-row gap-4 pt-4">
+                            <button
+                                type="submit"
+                                class="w-full btn-primary py-3 rounded-lg font-semibold glow-orange"
+                            >
+                                <i class="fas fa-save mr-2"></i>Save Changes
+                            </button>
+                            <a
+                                href="{% url 'accounts:profile' %}"
+                                class="w-full text-center btn-secondary py-3 rounded-lg font-semibold"
+                            >
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="divider"><span>Danger Zone</span></div>
+
+                    <!-- Logout Button -->
+                    <div class="text-center mt-4">
+                        <a
+                            href="{% url 'accounts:logout' %}"
+                            class="w-full md:w-auto inline-block btn-danger px-6 py-2 rounded-lg font-semibold"
+                        >
+                            <i class="fas fa-sign-out-alt mr-2"></i>Logout
                         </a>
                     </div>
-                </form>
-
-                <!-- Divider -->
-                <div class="divider"><span>Danger Zone</span></div>
-                
-                <!-- Logout Button -->
-                <div class="text-center mt-4">
-                     <a href="{% url 'accounts:logout' %}" class="w-full md:w-auto inline-block btn-danger px-6 py-2 rounded-lg font-semibold">
-                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
-                    </a>
                 </div>
-
             </div>
         </div>
-    </div>
 
-    <script>
-        // JavaScript to display the name of the selected file
-        const fileInput = document.getElementById('{{ profile_form.profile_pic.id_for_label }}');
-        const fileNameDisplay = document.getElementById('file-name-display');
+        <script>
+            // JavaScript to display the name of the selected file
+            const fileInput = document.getElementById(
+                "{{ profile_form.profile_pic.id_for_label }}"
+            );
+            const fileNameDisplay =
+                document.getElementById("file-name-display");
 
-        if (fileInput) {
-            fileInput.addEventListener('change', function() {
-                if (this.files && this.files.length > 0) {
-                    fileNameDisplay.textContent = this.files[0].name;
-                } else {
-                    fileNameDisplay.textContent = 'No file chosen';
-                }
-            });
-        }
-    </script>
-
-</body>
+            if (fileInput) {
+                fileInput.addEventListener("change", function () {
+                    if (this.files && this.files.length > 0) {
+                        fileNameDisplay.textContent = this.files[0].name;
+                    } else {
+                        fileNameDisplay.textContent = "No file chosen";
+                    }
+                });
+            }
+        </script>
+    </body>
 </html>
