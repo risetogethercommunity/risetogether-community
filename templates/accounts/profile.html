@@ -176,63 +176,111 @@
                 <!-- Leaderboard Tab -->
                 <div id="leaderboard-content" class="tab-content hidden">
                     <div class="glassmorphism rounded-2xl p-4 md:p-6">
-                        <h3 class="font-rajdhani text-2xl font-bold mb-4">Community Leaderboard</h3>
-                        <table class="leaderboard-table">
-                            <thead>
-                                <tr>
-                                    <th>Rank</th>
-                                    <th>Member</th>
-                                    <th class="text-right">Score</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- This will be replaced by a for loop in the future -->
-                                <tr class="user-rank"> <!-- Highlight the current user -->
-                                    <td class="rank">#1</td>
-                                    <td>
-                                        <div class="member-info">
-                                            {% if user.profile and user.profile.profile_pic %}
-                                                <img src="{{ user.profile.profile_pic.url }}" alt="User Pic" class="member-pic">
+                        <h3 class="font-rajdhani text-2xl font-bold mb-6">
+                            <i class="fas fa-trophy text-orange-500 mr-2"></i>
+                            Community Leaderboard
+                        </h3>
+                        
+                        <!-- Points Breakdown Info -->
+                        <div class="bg-gray-800/30 rounded-lg p-4 mb-6 border border-orange-500/20">
+                            <h4 class="font-rajdhani text-lg font-semibold mb-3 text-orange-500">
+                                <i class="fas fa-info-circle mr-2"></i>How Points Work
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-300">
+                                <div><i class="fas fa-project-diagram text-orange-500 mr-2"></i>Project: <span class="text-orange-500 font-bold">10 points</span></div>
+                                <div><i class="fas fa-blog text-orange-500 mr-2"></i>Blog: <span class="text-orange-500 font-bold">10 points</span></div>
+                                <div><i class="fas fa-align-left text-orange-500 mr-2"></i>Text Post: <span class="text-orange-500 font-bold">2 points</span></div>
+                                <div><i class="fas fa-image text-orange-500 mr-2"></i>Image/Video Post: <span class="text-orange-500 font-bold">5 points</span></div>
+                                <div><i class="fas fa-heart text-orange-500 mr-2"></i>Each Like Received: <span class="text-orange-500 font-bold">1 point</span></div>
+                                <div><i class="fas fa-comment text-orange-500 mr-2"></i>Each Comment Received: <span class="text-orange-500 font-bold">2 points</span></div>
+                            </div>
+                        </div>
+
+                        {% if leaderboard_users %}
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b border-gray-700">
+                                            <th class="text-left py-3 px-2 font-rajdhani text-gray-400">Rank</th>
+                                            <th class="text-left py-3 px-2 font-rajdhani text-gray-400">Member</th>
+                                            <th class="text-right py-3 px-2 font-rajdhani text-gray-400">Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for profile in leaderboard_users %}
+                                        <tr class="border-b border-gray-800 hover:bg-gray-800/30 transition-colors {% if profile.user == user %}bg-orange-500/10{% endif %}">
+                                            <td class="py-4 px-2">
+                                                <span class="font-rajdhani font-bold text-lg {% if forloop.counter == 1 %}text-yellow-500{% elif forloop.counter == 2 %}text-gray-400{% elif forloop.counter == 3 %}text-orange-600{% else %}text-gray-500{% endif %}">
+                                                    #{{ forloop.counter }}
+                                                </span>
+                                            </td>
+                                            <td class="py-4 px-2">
+                                                <div class="flex items-center gap-3">
+                                                    {% if profile.profile_pic %}
+                                                        <img src="{{ profile.profile_pic.url }}" alt="{{ profile.user.username }}" 
+                                                             class="w-10 h-10 rounded-full object-cover border-2 {% if forloop.counter == 1 %}border-yellow-500{% elif forloop.counter == 2 %}border-gray-400{% elif forloop.counter == 3 %}border-orange-600{% else %}border-gray-700{% endif %}"
+                                                             onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22><rect width=%2240%22 height=%2240%22 fill=%22%23374151%22/><text x=%2250%%22 y=%2250%%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23fff%22>{{ profile.user.first_name.0|default:profile.user.username.0|upper }}</text></svg>';">
+                                                    {% else %}
+                                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-white font-bold border-2 {% if forloop.counter == 1 %}border-yellow-500{% elif forloop.counter == 2 %}border-gray-400{% elif forloop.counter == 3 %}border-orange-600{% else %}border-gray-700{% endif %}">
+                                                            {{ profile.user.first_name.0|default:profile.user.username.0|upper }}
+                                                        </div>
+                                                    {% endif %}
+                                                    <div>
+                                                        <div class="font-semibold text-white">
+                                                            {{ profile.user.first_name|default:profile.user.username }} {{ profile.user.last_name }}
+                                                            {% if profile.user == user %}
+                                                                <span class="text-xs text-orange-500 ml-1">(You)</span>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="text-xs text-gray-400">@{{ profile.user.username }}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-4 px-2 text-right">
+                                                <span class="font-rajdhani font-bold text-lg {% if forloop.counter == 1 %}text-yellow-500{% elif forloop.counter == 2 %}text-gray-400{% elif forloop.counter == 3 %}text-orange-600{% else %}text-orange-500{% endif %}">
+                                                    {{ profile.activity_score|default:0 }}
+                                                </span>
+                                                <span class="text-xs text-gray-500 ml-1">pts</span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Current User's Rank if not in top 10 -->
+                            {% if user_rank > 10 %}
+                                <div class="mt-6 p-4 bg-orange-500/10 border border-orange-500/30 rounded-lg">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <span class="font-rajdhani font-bold text-lg text-orange-500">#{{ user_rank }}</span>
+                                            {% if user.profile.profile_pic %}
+                                                <img src="{{ user.profile.profile_pic.url }}" alt="{{ user.username }}" 
+                                                     class="w-10 h-10 rounded-full object-cover border-2 border-orange-500"
+                                                     onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22><rect width=%2240%22 height=%2240%22 fill=%22%23374151%22/><text x=%2250%%22 y=%2250%%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23fff%22>{{ user.first_name.0|default:user.username.0|upper }}</text></svg>';">
                                             {% else %}
-                                                <img src="{% static 'images/default-avatar.png' %}" alt="User Pic" class="member-pic">
+                                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-white font-bold border-2 border-orange-500">
+                                                    {{ user.first_name.0|default:user.username.0|upper }}
+                                                </div>
                                             {% endif %}
-                                            <span>{{ user.first_name|default:"User" }} {{ user.last_name|default:"" }} (You)</span>
+                                            <div>
+                                                <div class="font-semibold text-white">{{ user.first_name|default:user.username }} {{ user.last_name }} <span class="text-xs text-orange-500">(You)</span></div>
+                                                <div class="text-xs text-gray-400">@{{ user.username }}</div>
+                                            </div>
                                         </div>
-                                    </td>
-                                    <td class="score">1,520</td>
-                                </tr>
-                                <tr>
-                                    <td class="rank">#2</td>
-                                    <td>
-                                        <div class="member-info">
-                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop" alt="User Pic" class="member-pic">
-                                            <span>Jane Doe</span>
+                                        <div>
+                                            <span class="font-rajdhani font-bold text-lg text-orange-500">{{ user.profile.activity_score|default:0 }}</span>
+                                            <span class="text-xs text-gray-500 ml-1">pts</span>
                                         </div>
-                                    </td>
-                                    <td class="score">1,480</td>
-                                </tr>
-                                <tr>
-                                    <td class="rank">#3</td>
-                                    <td>
-                                        <div class="member-info">
-                                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&h=80&fit=crop" alt="User Pic" class="member-pic">
-                                            <span>Mike Ross</span>
-                                        </div>
-                                    </td>
-                                    <td class="score">1,350</td>
-                                </tr>
-                                <tr>
-                                    <td class="rank">#4</td>
-                                    <td>
-                                        <div class="member-info">
-                                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop" alt="User Pic" class="member-pic">
-                                            <span>Sarah Connor</span>
-                                        </div>
-                                    </td>
-                                    <td class="score">1,210</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="text-center py-12">
+                                <i class="fas fa-trophy text-gray-600 text-5xl mb-4"></i>
+                                <p class="text-gray-400">No leaderboard data available yet.</p>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

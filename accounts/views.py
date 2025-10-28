@@ -8,6 +8,15 @@ from .models import User, Profile, ProfileLink
 import re  # Import regex
 from .forms import UserUpdateForm, ProfileUpdateForm, ProfileLinkFormSet
 
+__all__ = [
+    "join_view",
+    "login_view",
+    "logout_view",
+    "profile_view",
+    "settings_view",
+    "edit_profile_view",
+]
+
 
 def join_view(request):
     if request.user.is_authenticated:
@@ -112,12 +121,31 @@ def profile_view(request, username=None):
     # Get user's projects from community app
     try:
         from community.models import Project
+        from django.db.models import Q
 
-        user_projects = Project.objects.filter(author=profile_user).order_by(
-            "-created_at"
+        user_projects = (
+            Project.objects.filter(Q(leader=profile_user) | Q(members=profile_user))
+            .distinct()
+            .order_by("-created_at")
         )
     except:
         user_projects = []
+
+    # Get leaderboard data - top 10 users by activity score
+    try:
+        leaderboard_users = Profile.objects.select_related("user").order_by(
+            "-activity_score"
+        )[:10]
+        # Find current user's rank
+        user_rank = (
+            Profile.objects.filter(
+                activity_score__gt=profile_user.profile.activity_score
+            ).count()
+            + 1
+        )
+    except:
+        leaderboard_users = []
+        user_rank = 0
 
     context = {
         "user": profile_user,  # For template compatibility
@@ -126,8 +154,16 @@ def profile_view(request, username=None):
         "user_blogs": user_blogs,
         "user_projects": user_projects,
         "posts_count": len(user_posts),
+        "leaderboard_users": leaderboard_users,
+        "user_rank": user_rank,
     }
     return render(request, "accounts/profile.html", context)
+
+
+@login_required
+def settings_view(request):
+    """Display settings page"""
+    return render(request, "accounts/settings.html")
 
 
 @login_required
