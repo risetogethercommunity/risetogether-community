@@ -7,10 +7,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("tinymce/", include("tinymce.urls")),
     path("", include("riseapp.urls")),
-    path(
-        "accounts/", include("accounts.urls", namespace="accounts")
-    ),  # <-- namespace here
+    path("accounts/", include("accounts.urls", namespace="accounts")),
     path("community/", include("community.urls", namespace="community")),
+    path("feed/", include("feed.urls", namespace="feed")),
 ]
 
 if settings.DEBUG:

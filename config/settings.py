@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "riseapp",
     "accounts",
     "community",
+    "feed",
 ]
 
 MIDDLEWARE = [

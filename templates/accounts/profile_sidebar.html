@@ -19,6 +19,12 @@
                 <span>Home</span>
             </a>
 
+            <!-- Feed -->
+            <a href="{% url 'feed:feed_list' %}" class="sidebar-link group">
+                <i class="fas fa-stream text-xl w-6"></i>
+                <span>Feed</span>
+            </a>
+
             <!-- Explore -->
             <a href="{% url 'community:blogs_list' %}" class="sidebar-link group">
                 <i class="fas fa-compass text-xl w-6"></i>
@@ -96,18 +102,24 @@
             <span class="text-xs">Home</span>
         </a>
 
-        <!-- Explore -->
-        <a href="{% url 'community:blogs_list' %}" class="mobile-nav-link">
-            <i class="fas fa-compass text-xl"></i>
-            <span class="text-xs">Explore</span>
+        <!-- Feed -->
+        <a href="{% url 'feed:feed_list' %}" class="mobile-nav-link">
+            <i class="fas fa-stream text-xl"></i>
+            <span class="text-xs">Feed</span>
         </a>
 
         <!-- Create -->
-        <a href="#" class="mobile-nav-link">
+        <a href="#" class="mobile-nav-link" onclick="openCreatePostModal(); return false;">
             <div class="bg-orange-500 rounded-full p-3 -mt-6 shadow-lg">
                 <i class="fas fa-plus text-white text-xl"></i>
             </div>
             <span class="text-xs mt-1">Create</span>
+        </a>
+
+        <!-- Explore -->
+        <a href="{% url 'community:blogs_list' %}" class="mobile-nav-link">
+            <i class="fas fa-compass text-xl"></i>
+            <span class="text-xs">Explore</span>
         </a>
 
         <!-- Notifications -->
