@@ -81,7 +81,6 @@ def logout_view(request):
 
 
 @login_required
-@login_required
 def profile_view(request, username=None):
     """View a user's profile. If username is provided, show that user's profile, otherwise show the logged-in user's profile."""
     if username:
@@ -94,9 +93,39 @@ def profile_view(request, username=None):
         # View own profile
         profile_user = request.user
 
+    # Get user's posts from feed app
+    try:
+        from feed.models import Post
+
+        user_posts = Post.objects.filter(author=profile_user).order_by("-created_at")
+    except:
+        user_posts = []
+
+    # Get user's blogs from community app
+    try:
+        from community.models import Blog
+
+        user_blogs = Blog.objects.filter(author=profile_user).order_by("-created_at")
+    except:
+        user_blogs = []
+
+    # Get user's projects from community app
+    try:
+        from community.models import Project
+
+        user_projects = Project.objects.filter(author=profile_user).order_by(
+            "-created_at"
+        )
+    except:
+        user_projects = []
+
     context = {
         "user": profile_user,  # For template compatibility
         "profile_user": profile_user,
+        "user_posts": user_posts,
+        "user_blogs": user_blogs,
+        "user_projects": user_projects,
+        "posts_count": len(user_posts),
     }
     return render(request, "accounts/profile.html", context)
 
