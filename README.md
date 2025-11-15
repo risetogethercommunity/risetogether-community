@@ -1,17 +1,21 @@
-# 🚀 Rise Together
+<div align="center">
+  <img src="screenshots/RiseThumb.png" alt="Rise Together Banner" width="100%" />
+</div>
+
+<h1 align="center">🚀 Rise Together</h1>
+
+<p align="center">
+  <strong>Learn. Build. Grow.</strong><br>
+  Empowering the next generation of tech leaders through collaborative learning and innovation.
+</p>
 
 <div align="center">
 
-### Learn. Build. Grow.
-
-**Empowering the next generation of tech leaders through collaborative learning, innovative projects, and endless possibilities.**
-
-[![Website](https://img.shields.io/badge/Website-risetogether.tech-orange?style=for-the-badge&logo=googlechrome&logoColor=white)](https://risetogether.tech)
 [![Django](https://img.shields.io/badge/Django-5.2.5-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-[🌐 Live Demo](https://risetogether.tech) • [📖 Documentation](#documentation) • [🐛 Report Bug](https://github.com/risetogethercommunity/rise-together-web/issues) • [✨ Request Feature](https://github.com/risetogethercommunity/rise-together-web/issues)
+[🌐 Live Demo](https://risetogether.tech) • [🐛 Report Bug](https://github.com/logicbyroshan/social-community-platform/issues) • [✨ Request Feature](https://github.com/logicbyroshan/social-community-platform/issues)
 
 </div>
 
@@ -21,67 +25,16 @@
 
 **Rise Together** is a vibrant community platform designed to bring together aspiring developers, tech enthusiasts, and innovators. Our mission is to create a collaborative ecosystem where members can learn new technologies, work on real-world projects, share resources, and grow together as a community.
 
-Whether you're a beginner taking your first steps in programming or an experienced developer looking to mentor others, Rise Together provides the perfect environment to connect, collaborate, and create.
-
-### 🎯 Our Vision
-
-To build the largest and most supportive tech community where knowledge flows freely, projects come to life, and every member has the opportunity to rise together towards their goals.
-
-### 💡 What Makes Us Different
-
-- **Community-Driven Learning**: Learn from peers and mentors in a supportive environment
-- **Real-World Projects**: Work on actual projects that make a difference
-- **Resource Library**: Access curated learning materials and tools
-- **Activity Tracking**: Stay motivated with community challenges and activities
-- **Tech Blog**: Stay updated with the latest tech trends and tutorials
-
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-### 🔐 User Authentication & Profiles
-- **User Registration & Login** - Secure authentication system
-- **Profile Management** - Customizable user profiles with bio, skills, and social links
-- **Password Recovery** - Email-based password reset functionality
-- **Profile Pictures** - Upload and manage profile images
-
-### 📝 Community Blog
-- **Article Publishing** - Share knowledge through blog posts
-- **Rich Text Editor** - TinyMCE integration for beautiful content creation
-- **Categories & Tags** - Organize content for easy discovery
-- **Reading Time Estimation** - Auto-calculated reading time for articles
-- **Featured Posts** - Highlight important community content
-
-### 🛠️ Projects Showcase
-- **Project Listings** - Browse community projects
-- **Project Details** - Comprehensive project information and links
-- **Technology Tags** - Filter projects by tech stack
-- **Live Demo Links** - Direct links to live projects and repositories
-
-### 🎯 Activities & Events
-- **Community Activities** - Track ongoing events and challenges
-- **Activity Calendar** - Never miss an important community event
-- **Participation Tracking** - Keep track of your involvement
-- **Achievement Badges** - Earn recognition for contributions
-
-### 📚 Resource Library
-- **Curated Resources** - Access handpicked learning materials
-- **Multiple Formats** - Articles, videos, courses, and tools
-- **Category Filtering** - Find exactly what you need
-- **Community Ratings** - See what the community recommends
-
-### 📧 Contact & Newsletter
-- **Contact Form** - Easy communication with the team
-- **Newsletter Subscription** - Stay updated with community news
-- **Email Notifications** - Get notified about important updates
-
-### 🎨 User Experience
-- **Responsive Design** - Perfect experience on all devices
-- **Dark Theme** - Easy on the eyes with modern dark UI
-- **Glassmorphism Effects** - Beautiful, modern interface design
-- **Smooth Animations** - Delightful micro-interactions
-- **Fast Loading** - Optimized performance
-- **Accessibility** - Built with inclusivity in mind
+- 🔐 **User Authentication & Profiles** - Secure login, customizable profiles, and password recovery
+- 📝 **Community Blog** - Rich text editor, categories, tags, and featured posts
+- 🛠️ **Projects Showcase** - Browse projects, tech tags, and live demo links
+- 🎯 **Activities & Events** - Track events, participation, and earn achievement badges
+- 📚 **Resource Library** - Curated learning materials with community ratings
+- 🎨 **Modern UI/UX** - Responsive design, dark theme, glassmorphism effects
 
 ---
 
@@ -173,112 +126,15 @@ To build the largest and most supportive tech community where knowledge flows fr
 
 ## 🛠️ Tech Stack
 
-### Backend
-- **Django 5.2.5** - High-level Python web framework
-- **Python 3.8+** - Programming language
-- **SQLite3** - Database (development)
-- **Django ORM** - Object-relational mapping
+| Category | Technology | Version |
+|----------|-----------|---------|
+| **Backend** | Django | 5.2.5 |
+| **Language** | Python | 3.8+ |
+| **Frontend** | TailwindCSS | - |
+| **Database** | SQLite3 | - |
+| **Editor** | TinyMCE | - |
 
-### Frontend
-- **TailwindCSS** - Utility-first CSS framework
-- **Vanilla JavaScript** - Enhanced interactivity
-- **Font Awesome** - Icon library
-- **Google Fonts** - Rajdhani & Inter typefaces
-- **TinyMCE** - Rich text editor
-
-### Tools & Libraries
-- **Django Messages** - User notifications
-- **Django Static Files** - Asset management
-- **Pillow** - Image processing
-- **Django Password Reset** - Account recovery
-
----
-
-## 📁 Project Structure
-
-```
-Rise-Together/
-│
-├── 📁 accounts/                    # User authentication & profiles
-│   ├── migrations/                 # Database migrations
-│   ├── __init__.py
-│   ├── admin.py                    # Admin interface configuration
-│   ├── apps.py                     # App configuration
-│   ├── forms.py                    # User forms (login, register, profile)
-│   ├── models.py                   # User profile model
-│   ├── urls.py                     # URL routing for accounts
-│   ├── views.py                    # View functions (login, register, profile)
-│   └── tests.py                    # Unit tests
-│
-├── 📁 community/                   # Community features (blogs, projects, activities)
-│   ├── migrations/                 # Database migrations
-│   ├── __init__.py
-│   ├── admin.py                    # Admin configuration for community models
-│   ├── apps.py                     # App configuration
-│   ├── models.py                   # Blog, Project, Activity models
-│   ├── urls.py                     # URL routing for community features
-│   ├── views.py                    # View functions for listings
-│   └── tests.py                    # Unit tests
-│
-├── 📁 riseapp/                     # Core application
-│   ├── migrations/                 # Database migrations
-│   ├── __init__.py
-│   ├── admin.py                    # Contact, Newsletter, FAQ admin
-│   ├── apps.py                     # App configuration
-│   ├── models.py                   # Contact, Newsletter, Testimonial, FAQ models
-│   ├── urls.py                     # Main URL routing
-│   ├── views.py                    # Homepage and newsletter views
-│   └── tests.py                    # Unit tests
-│
-├── 📁 config/                      # Project configuration
-│   ├── __init__.py
-│   ├── asgi.py                     # ASGI configuration
-│   ├── settings.py                 # Django settings
-│   ├── urls.py                     # Root URL configuration
-│   └── wsgi.py                     # WSGI configuration
-│
-├── 📁 static/                      # Static files (CSS, JS, Images)
-│   ├── css/
-│   │   ├── base.css                # Global styles & animations
-│   │   ├── home.css                # Homepage specific styles
-│   │   ├── profile.css             # Profile page styles
-│   │   ├── auth.css                # Authentication styles
-│   │   └── edit_profile.css        # Profile edit styles
-│   ├── js/
-│   │   └── auth.js                 # Authentication interactions
-│   └── images/
-│       └── logo.png                # Community logo
-│
-├── 📁 templates/                   # HTML templates
-│   ├── base.html                   # Base template (navbar, footer)
-│   ├── home.html                   # Homepage template
-│   ├── 📁 accounts/
-│   │   ├── join.html               # Registration page
-│   │   ├── login.html              # Login page
-│   │   ├── profile.html            # User profile page
-│   │   ├── edit_profile.html       # Profile editing page
-│   │   ├── password_reset.html     # Password reset request
-│   │   ├── password_reset_done.html
-│   │   ├── reset.html              # Password reset form
-│   │   └── password_reset_complete.html
-│   └── 📁 Pages/
-│       ├── blogs.html              # Blog listing page
-│       ├── blog-detail.html        # Individual blog post
-│       ├── projects.html           # Projects showcase
-│       ├── activities.html         # Community activities
-│       └── resources.html          # Learning resources
-│
-├── 📁 media/                       # User-uploaded files
-│   └── profile_pics/               # Profile pictures
-│
-├── 📁 venv/                        # Virtual environment (not in git)
-│
-├── db.sqlite3                      # SQLite database
-├── manage.py                       # Django management script
-├── requirements.txt                # Python dependencies
-├── .gitignore                      # Git ignore rules
-└── README.md                       # This file
-```
+> See [TECH_STACK.md](TECH_STACK.md) for complete tech stack details and dependencies.
 
 ---
 
