@@ -87,6 +87,13 @@
     }
 }
 
+/* Responsivity for wrapper */
+@media (max-width: 768px) {
+    .left, .right {
+        width: 90%;
+    }
+}
+
 .link-formset-row .form-field {
     width: 100%;
 }
